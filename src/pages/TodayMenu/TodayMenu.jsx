@@ -30,8 +30,11 @@ const TodayMenu = () => {
           </div>
         </div>
       </div>
-      <div>
-        <div className=" py-5 bg-slate-300 w-full"></div>
+      <div className="w-11/12 mx-auto">
+        <div className=" py-8 bg-slate-600 rounded-t-md w-full mt-10"></div>
+        <div>
+          
+        </div>
       </div>
     </div>
   );
