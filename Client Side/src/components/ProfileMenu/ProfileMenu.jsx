@@ -33,7 +33,7 @@ const ProfileMenu = () => {
           </span>
         </div>
       </div>
-      <div className="invisible right-0 absolute z-50 flex min-w-48 flex-col bg-gray-500 shadow-4xl group-hover:visible text-center smallScreenMenu">
+      <div className="invisible right-0 absolute z-50 flex min-w-48 flex-col bg-gray-500 shadow-4xl group-hover:visible text-center">
         <div>
           <h1 className="py-2 text-2xl bg-slate-800 text-white px-3">
             {userDta.displayName ? userDta.displayName : 'User Name'}
@@ -41,7 +41,7 @@ const ProfileMenu = () => {
         </div>
         <NavLink
           to={'/dashboard'}
-          className="font-semibold border-b py-3 tracking-widest flex items-center justify-center gap-1"
+          className="font-semibold border-b py-3 tracking-widest flex items-center justify-center gap-1 hover:shadow hover:shadow-slate-200"
         >
           <span className="text-2xl">
             <CgProfile />
@@ -50,7 +50,7 @@ const ProfileMenu = () => {
         </NavLink>
         <button
           onClick={logout}
-          className="hover:bg-[#c52323] font-semibold border-b bg-sClr py-3 tracking-widest flex items-center justify-center gap-3"
+          className="hover:bg-[#c52323] font-semibold border-b bg-sClr py-3 tracking-widest flex items-center justify-center gap-3 hover:shadow hover:shadow-slate-200"
         >
           <span className="text-2xl">
             <LuLogOut />

@@ -7,10 +7,9 @@ import ProfileMenu from '../ProfileMenu/ProfileMenu';
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
-  const [logoutMenu, setLogout] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { userDta, isLoading } = useAuth();
-  console.log(userDta);
+  // console.log(userDta);
 
   useEffect(() => {
     const handleScrolled = () => {
