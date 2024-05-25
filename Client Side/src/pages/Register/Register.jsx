@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ImSpinner9 } from 'react-icons/im';
 import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
+import useAuth from '../../Hooks/useAuth';
 
 export default function Register() {
   const [errPass, setErrPass] = useState(false);
@@ -115,7 +116,7 @@ export default function Register() {
         console.log(errorMessage);
         Swal.fire({
           title: 'Oops...!',
-          text: 'Sorry, your account could not be logged in!',
+          text: `Sorry, your account could not be Login ! "${errorMessage.message}"`,
           icon: 'error',
         });
       });
@@ -130,7 +131,7 @@ export default function Register() {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
           <div>
             <input
-              className="w-full"
+              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2"
               type="text"
               placeholder="Name"
               {...register('Name', { required: true, maxLength: 20 })}

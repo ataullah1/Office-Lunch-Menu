@@ -53,9 +53,12 @@ const Nav = () => {
           </Link>
         </div>
         <div className="flex items-center gap-4 relative">
-          <button className="py-2 px-6 rounded-md shadow-md  hover:shadow-lg hover:shadow-slate-100 hover:scale-110 duration-300 shadow-slate-200">
+          <Link
+            to={'/login'}
+            className="py-2 px-6 rounded-md shadow-md  hover:shadow-lg hover:shadow-slate-100 hover:scale-110 duration-300 shadow-slate-200"
+          >
             Login
-          </button>
+          </Link>
           <button onClick={() => setMenu(!menu)} className="text-4xl md:hidden">
             <CgMenuRightAlt />
           </button>
