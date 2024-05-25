@@ -4,7 +4,7 @@ import Footer from '../components/Footer/Footer';
 
 const Root = () => {
   return (
-    <div>
+    <div className="bg-slate-800 text-white">
       <Nav />
       <Outlet />
       <Footer />
