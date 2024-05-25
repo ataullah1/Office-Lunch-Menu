@@ -27,7 +27,7 @@ const Banner = () => {
         centeredSlides={true}
         loop={true}
         autoplay={{
-          delay: 3000,
+          delay: 3500,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -71,9 +71,9 @@ const Banner = () => {
                     {`Order your lunch with ease. Enjoy fresh, delicious meals delivered to your office every day.`}
                   </p>
                   <div data-aos="zoom-in-up" data-aos-duration="1000">
-                    <Link to={'/all-menu'}>
-                      <button className="text-xl mt-0 sm:mt-8 py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
-                        ALL MENU
+                    <Link to={'/today-menu'}>
+                      <button className="text-xl mt-0 sm:mt-8 uppercase py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
+                        today MENU
                       </button>
                     </Link>
                   </div>
@@ -110,12 +110,12 @@ const Banner = () => {
                     data-aos-duration="900"
                     className="max-w-[700px] mx-auto p-4 text-base md:text-lg"
                   >
-                    {`Choose from a diverse selection of meals, catering to all dietary preferences and tastes.`}
+                    {`Choose from a diverse selection of meals, catering to today dietary preferences and tastes.`}
                   </p>
 
-                  <Link to={'/all-menu'}>
-                    <button className="text-xl mt-0 sm:mt-8 py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
-                      ALL MENU
+                  <Link to={'/today-menu'}>
+                    <button className="text-xl mt-0 sm:mt-8 uppercase py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
+                      today MENU
                     </button>
                   </Link>
                 </div>
@@ -146,9 +146,9 @@ const Banner = () => {
                     Promote wellness with nutritious lunches that boost
                     productivity and keep employees satisfied.
                   </p>
-                  <Link to={'/all-menu'}>
-                    <button className="text-xl mt-0 sm:mt-8 py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
-                      ALL MENU
+                  <Link to={'/today-menu'}>
+                    <button className="text-xl mt-0 sm:mt-8 uppercase py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
+                      today MENU
                     </button>
                   </Link>
                 </div>
