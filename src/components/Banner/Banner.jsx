@@ -13,7 +13,7 @@ const slide1 =
 const slide2 =
   'https://img.freepik.com/free-photo/midsection-men-holding-coffee-cup-near-delicious-breakfast-with-juice-laptop-wooden-table_23-2148195266.jpg?t=st=1716603943~exp=1716607543~hmac=95c1952f78ea99677ed8aeebdca1a2b584309e48fb66e0eddd5320f1a737d44b&w=900';
 const slide3 =
-  'https://img.freepik.com/free-photo/group-friends-eating-restaurant_23-2148006650.jpg?t=st=1716603953~exp=1716607553~hmac=4764ea9afc65730f9c98ddfc402bdd75f3a74bc3d5de7d92934755983a997e2f&w=900s';
+  'https://img.freepik.com/premium-photo/business-people-having-lunch_13339-146027.jpg?w=900';
 
 import { Link } from 'react-router-dom';
 
@@ -61,20 +61,20 @@ const Banner = () => {
                     data-aos-duration="1000"
                     className="text-3xl md:text-5xl lg:text-6xl leading-loose"
                   >
-                    Unraveling the Essence of Exceptional Products
+                    Effortless Lunch Orders Daily
                   </h1>
                   <p
                     data-aos="zoom-in-down"
                     data-aos-duration="900"
                     className="max-w-[700px] mx-auto p-4 text-base md:text-lg"
                   >
-                    {`Delve into the essence of each product through comprehensive reviews and insightful recommendations, guiding others toward remarkable discoveries.`}
+                    {`Order your lunch with ease. Enjoy fresh, delicious meals delivered to your office every day.`}
                   </p>
                   <div data-aos="zoom-in-up" data-aos-duration="1000">
-                    <Link to={'/queries'}>
-                      <button className="text-xl mt-0 sm:mt-8 py-2 px-11 bg-mainColor rounded duration-300 hover:-skew-x-12 hover:bg-[#1aa3f3]">
-                        All Queries
-                      </button>{' '}
+                    <Link to={'/all-menu'}>
+                      <button className="text-xl mt-0 sm:mt-8 py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
+                        ALL MENU
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -103,20 +103,20 @@ const Banner = () => {
                     data-aos-duration="3000"
                     className="text-3xl md:text-5xl lg:text-6xl  leading-loose"
                   >
-                    Elevate Your Shopping Experience with Insights
+                    Variety of Menu Options
                   </h1>
                   <p
                     data-aos="zoom-in-down"
                     data-aos-duration="900"
                     className="max-w-[700px] mx-auto p-4 text-base md:text-lg"
                   >
-                    {`Enhance your shopping journey with user-generated insights, empowering you to make informed decisions and uncover the best products suited to your needs.`}
+                    {`Choose from a diverse selection of meals, catering to all dietary preferences and tastes.`}
                   </p>
 
-                  <Link to={'/queries'}>
-                    <button className="text-xl mt-0 sm:mt-8 py-2 px-11 bg-mainColor rounded duration-300 hover:-skew-x-12 hover:bg-[#1aa3f3]">
-                      All Queries
-                    </button>{' '}
+                  <Link to={'/all-menu'}>
+                    <button className="text-xl mt-0 sm:mt-8 py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
+                      ALL MENU
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -140,15 +140,14 @@ const Banner = () => {
               <div className="flex h-full items-center justify-center relative">
                 <div className="text-white px-4 max-w-[900px] space-y-0 sm:space-y-5">
                   <h1 className="text-3xl md:text-5xl lg:text-6xl  leading-loose">
-                    Empowering Consumer Voices, Shaping Quality
+                    Healthy Meals, Happy Employees
                   </h1>
                   <p className="max-w-[700px] mx-auto p-4 text-base md:text-lg">
-                    Engage in lively discussions, share insights, and influence
-                    product standards by contributing your reviews and
-                    recommendations within our vibrant community.
+                    Promote wellness with nutritious lunches that boost
+                    productivity and keep employees satisfied.
                   </p>
                   <Link to={'/all-menu'}>
-                    <button className="text-xl mt-0 sm:mt-8 py-2 px-11 bg-mainColor rounded duration-300 hover:-skew-x-12 hover:bg-[#1aa3f3]">
+                    <button className="text-xl mt-0 sm:mt-8 py-2 px-11 shadow-md hover:shadow-lg hover:shadow-slate-100 hover:scale-110 shadow-slate-200 rounded duration-300">
                       ALL MENU
                     </button>
                   </Link>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <div>
+    <div className="fixed left-0 top-0 z-50 w-full">
       <div className="py-5 flex justify-between items-center w-11/12 mx-auto">
         <button className="text-3xl font-bold">Logo</button>
         <div className="flex gap-5 items-center">
