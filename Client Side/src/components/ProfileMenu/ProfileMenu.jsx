@@ -41,7 +41,7 @@ const ProfileMenu = () => {
         </div>
         <NavLink
           to={'/dashboard'}
-          className="hover:bg-[#02d998] hover:text-white font-semibold border-b bg-sClr  text-white py-3 tracking-widest flex items-center justify-center gap-1"
+          className="font-semibold border-b py-3 tracking-widest flex items-center justify-center gap-1"
         >
           <span className="text-2xl">
             <CgProfile />
@@ -50,7 +50,7 @@ const ProfileMenu = () => {
         </NavLink>
         <button
           onClick={logout}
-          className="hover:bg-[#c52323] hover:text-white font-semibold border-b bg-sClr  text-white py-3 tracking-widest flex items-center justify-center gap-3"
+          className="hover:bg-[#c52323] font-semibold border-b bg-sClr py-3 tracking-widest flex items-center justify-center gap-3"
         >
           <span className="text-2xl">
             <LuLogOut />

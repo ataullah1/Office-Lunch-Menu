@@ -123,6 +123,7 @@ export default function Register() {
   };
 
   if (userDta) {
+    naviget('/');
     return <Loding />;
   }
   return (
@@ -237,7 +238,7 @@ export default function Register() {
           </div>
           <button
             disabled={isLoading}
-            className="w-full py-2 font-semibold shadow-md shadow-slate-400 border cursor-pointer duration-200 hover:shadow-lg hover:shadow-slate-200"
+            className="rounded w-full py-2 font-semibold shadow-md shadow-slate-400 border cursor-pointer duration-200 hover:shadow-lg hover:shadow-slate-200"
           >
             {isLoading ? (
               <ImSpinner9 className="animate-spin text-2xl mx-auto" />

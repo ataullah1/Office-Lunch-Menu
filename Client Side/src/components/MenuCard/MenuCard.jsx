@@ -15,7 +15,7 @@ const MenuCard = ({ menu }) => {
         <hr />
         <div className="min-h-14">
           {menu?.food_ingredients.map((dta) => (
-            <span className="mr-2">{dta},</span>
+            <span className="">{dta}, </span>
           ))}
         </div>
         <hr />
