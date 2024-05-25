@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
 import { CgMenuRightAlt } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
+import { ImSpinner9 } from 'react-icons/im';
+import ProfileMenu from '../ProfileMenu/ProfileMenu';
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
+  const [logoutMenu, setLogout] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { userDta, isLoading } = useAuth();
+  console.log(userDta);
+
   useEffect(() => {
     const handleScrolled = () => {
       if (window.scrollY > 0) {
@@ -53,12 +60,17 @@ const Nav = () => {
           </Link>
         </div>
         <div className="flex items-center gap-4 relative">
-          <Link
-            to={'/login'}
-            className="py-2 px-6 rounded-md shadow-md  hover:shadow-lg hover:shadow-slate-100 hover:scale-110 duration-300 shadow-slate-200"
-          >
-            Login
-          </Link>
+          {isLoading ? (
+            <div className="py-2 w-[60px] h-[60px] flex items-center justify-center text-5xl text-white">
+              <ImSpinner9 className="animate-spin" />
+            </div>
+          ) : userDta ? (
+            <ProfileMenu />
+          ) : (
+            <Link to={'/login'}>
+              <button className="py-2 px-6 shadow-md shadow-slate-200 hover:shadow-slate-200 hover:shadow-lg hover:scale-110 duration-300 rounded ">Login</button>
+            </Link>
+          )}
           <button onClick={() => setMenu(!menu)} className="text-4xl md:hidden">
             <CgMenuRightAlt />
           </button>
