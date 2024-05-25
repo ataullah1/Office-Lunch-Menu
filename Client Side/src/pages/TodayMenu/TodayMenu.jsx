@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import MenuCard from '../../components/MenuCard/MenuCard';
 import MultyImageBanner from '../../components/MultyImageBanner/MultyImageBanner';
 
 const img1 =
@@ -13,10 +15,20 @@ const img5 =
   'https://img.freepik.com/free-photo/high-angle-delicious-food-keyboard_23-2149182227.jpg?t=st=1716614451~exp=1716618051~hmac=97512321bcaba8efcd71e5e5e891d8e29717a1d36c53a2794aa94873c4d17035&w=900';
 
 const TodayMenu = () => {
+  const [menu, setMenu] = useState([]);
+  useEffect(() => {
+    const data = async () => {
+      const res = await fetch('today-menu.json');
+      const data = await res.json();
+      setMenu(data);
+      console.log(data);
+    };
+    data();
+  }, []);
   return (
     <div>
       {/* Banner Part */}
-      <div className="h-64 sm:h-72 w-full bg-red-200 relative">
+      <div className="h-52 sm:h-72 w-full bg-red-200 relative">
         <MultyImageBanner
           img1={img1}
           img2={img2}
@@ -26,12 +38,21 @@ const TodayMenu = () => {
         />
         <div className="absolute z-10 top-0 left-0 bg-[#00000073] w-full h-full">
           <div className="h-full w-10/12 mx-auto flex items-center justify-center pt-10 sm:pt-20 text-center">
-            <button className="text-5xl font-bold">TODAY ALL MENU</button>
+            <button className="text-3xl md:text-5xl font-bold">
+              TODAY ALL ITEM
+            </button>
           </div>
         </div>
       </div>
-      <div>
-        <div className=" py-5 bg-slate-300 w-full"></div>
+      <div className="w-11/12 mx-auto">
+        <div className="py-8 mt-8 bg-slate-500 rounded-t-md"></div>
+        <div className=" w-full">
+          <div className="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-10">
+            {menu.map((dta, i) => (
+              <MenuCard key={i} menu={dta} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

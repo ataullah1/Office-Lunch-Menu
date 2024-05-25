@@ -4,6 +4,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'react/prop-types: off',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
   ],

@@ -1,0 +1,134 @@
+[
+  {
+    "food_name": "Grilled Chicken Salad",
+    "food_description": "Healthy grilled chicken with fresh vegetables.",
+    "food_image": "https://img.freepik.com/free-photo/salmon-salad_74190-5901.jpg?t=st=1716630971~exp=1716634571~hmac=2c046299f8240e70d32d3a3bb91d4e65f54a2095eae11c94888b3150ba9ca81f&w=900",
+    "food_ingredients": [
+      "Chicken breast",
+      "Lettuce",
+      "Tomatoes",
+      "Cucumbers",
+      "Olive oil"
+    ],
+    "food_details": "Our Grilled Chicken Salad features tender chicken breast grilled to perfection, served atop a bed of crisp lettuce, juicy tomatoes, and crunchy cucumbers. Drizzled with a light olive oil dressing, this salad is both nutritious and delicious, providing a balanced meal option."
+  },
+  {
+    "food_name": "Vegetable Stir-Fry",
+    "food_description": "Mixed vegetables sautéed in a savory sauce.",
+    "food_image": "https://img.freepik.com/premium-photo/close-up-shot-stir-frying-vegetables-wok_419341-123763.jpg?w=900",
+    "food_ingredients": [
+      "Broccoli",
+      "Carrots",
+      "Bell peppers",
+      "Soy sauce",
+      "Garlic"
+    ],
+    "food_details": "Enjoy a colorful array of fresh vegetables including broccoli, carrots, and bell peppers, all stir-fried to perfection in a savory garlic soy sauce. This dish is a perfect blend of flavors and textures, making it a healthy and satisfying meal choice."
+  },
+  {
+    "food_name": "Beef Teriyaki Bowl",
+    "food_description": "Tender beef slices with teriyaki sauce on rice.",
+    "food_image": "https://img.freepik.com/premium-photo/bowl-menudo-served-with-side-sliced-avocado_974629-221980.jpg?w=900",
+    "food_ingredients": [
+      "Beef",
+      "Teriyaki sauce",
+      "Rice",
+      "Green onions",
+      "Sesame seeds"
+    ],
+    "food_details": "Savor the rich flavors of our Beef Teriyaki Bowl, featuring tender slices of beef cooked in a sweet and savory teriyaki sauce, served over a bed of steamed rice. Garnished with green onions and sesame seeds, this dish offers a delightful taste experience."
+  },
+  {
+    "food_name": "Classic Cheeseburger",
+    "food_description": "Juicy beef patty with cheese and fresh toppings.",
+    "food_image": "https://img.freepik.com/premium-photo/cheese-burger-american-cheese-burger-with-golden-french-fries-fresh-salad_979520-50971.jpg?w=900",
+    "food_ingredients": [
+      "Beef patty",
+      "Cheddar cheese",
+      "Lettuce",
+      "Tomato",
+      "Pickles",
+      "Bun"
+    ],
+    "food_details": "Our Classic Cheeseburger is a timeless favorite, featuring a juicy beef patty topped with melted cheddar cheese, crisp lettuce, ripe tomato, and pickles, all sandwiched between a soft, toasted bun. It's a satisfying meal that hits all the right notes."
+  },
+  {
+    "food_name": "Margherita Pizza",
+    "food_description": "Traditional pizza with fresh tomatoes and basil.",
+    "food_image": "https://img.freepik.com/free-photo/high-angle-delicious-pizza-table_23-2148305632.jpg?t=st=1716631279~exp=1716634879~hmac=04ccf17a8ce9c5d00e60345a9b87ed0187343471a98168c5777c7db171b81a9e&w=900",
+    "food_ingredients": [
+      "Pizza dough",
+      "Tomato sauce",
+      "Mozzarella cheese",
+      "Tomatoes",
+      "Basil"
+    ],
+    "food_details": "Our Margherita Pizza is a classic Italian favorite, made with a thin, crispy crust topped with tangy tomato sauce, melted mozzarella cheese, fresh tomato slices, and fragrant basil leaves. It's a simple yet flavorful dish that's perfect for any pizza lover."
+  },
+  {
+    "food_name": "Spaghetti Carbonara",
+    "food_description": "Creamy pasta with pancetta and Parmesan cheese.",
+    "food_image": "https://img.freepik.com/premium-photo/pasta-dish-with-shrimps-artichokes-garlic-creamy-sauce_124507-128597.jpg?w=900",
+    "food_ingredients": [
+      "Spaghetti",
+      "Pancetta",
+      "Parmesan cheese",
+      "Eggs",
+      "Black pepper"
+    ],
+    "food_details": "Indulge in the rich and creamy flavors of our Spaghetti Carbonara. This classic Italian dish features al dente spaghetti tossed with crispy pancetta, grated Parmesan cheese, eggs, and a sprinkle of black pepper. It's a comforting and satisfying meal."
+  },
+  {
+    "food_name": "Chicken Caesar Wrap",
+    "food_description": "Grilled chicken with Caesar dressing in a wrap.",
+    "food_image": "chicken_caesar_wrap.jpg",
+    "food_ingredients": [
+      "Chicken breast",
+      "Romaine lettuce",
+      "Caesar dressing",
+      "Parmesan cheese",
+      "Tortilla wrap"
+    ],
+    "food_details": "Our Chicken Caesar Wrap combines the best elements of a Caesar salad in a convenient wrap. Grilled chicken breast, crisp Romaine lettuce, and tangy Caesar dressing are wrapped in a soft tortilla, topped with grated Parmesan cheese. It's a perfect on-the-go meal."
+  },
+  {
+    "food_name": "Vegetarian Burrito",
+    "food_description": "Loaded with beans, rice, and fresh veggies.",
+    "food_image": "vegetarian_burrito.jpg",
+    "food_ingredients": [
+      "Black beans",
+      "Rice",
+      "Bell peppers",
+      "Corn",
+      "Avocado",
+      "Tortilla"
+    ],
+    "food_details": "Our Vegetarian Burrito is a hearty and flavorful option for vegetarians and non-vegetarians alike. Packed with black beans, rice, bell peppers, corn, and avocado, all wrapped in a soft tortilla, this burrito offers a satisfying and nutritious meal."
+  },
+  {
+    "food_name": "Salmon Sushi Rolls",
+    "food_description": "Fresh salmon with rice and seaweed wrap.",
+    "food_image": "salmon_sushi_rolls.jpg",
+    "food_ingredients": [
+      "Salmon",
+      "Sushi rice",
+      "Nori (seaweed)",
+      "Cucumber",
+      "Avocado"
+    ],
+    "food_details": "Enjoy the delicate and fresh flavors of our Salmon Sushi Rolls. These rolls feature high-quality salmon, perfectly seasoned sushi rice, and fresh cucumber and avocado, all wrapped in a thin sheet of nori. It's a light and refreshing meal option."
+  },
+  {
+    "food_name": "Quinoa Salad",
+    "food_description": "Healthy quinoa with mixed greens and veggies.",
+    "food_image": "quinoa_salad.jpg",
+    "food_ingredients": [
+      "Quinoa",
+      "Mixed greens",
+      "Cherry tomatoes",
+      "Cucumbers",
+      "Feta cheese"
+    ],
+    "food_details": "Our Quinoa Salad is a nutritious and delicious choice for a light meal. This salad features cooked quinoa mixed with fresh greens, cherry tomatoes, and cucumbers, topped with crumbled feta cheese. It's a perfect balance of flavors and textures, offering a wholesome and satisfying option."
+  }
+]
