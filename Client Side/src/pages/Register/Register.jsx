@@ -128,10 +128,10 @@ export default function Register() {
   return (
     <div className="w-10/12 mx-auto pt-28">
       <div className="w-full md:w-[500px] mx-auto">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
           <div>
             <input
-              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2"
+              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
               type="text"
               placeholder="Name"
               {...register('Name', { required: true, maxLength: 20 })}
@@ -145,13 +145,13 @@ export default function Register() {
             <div className="relative">
               <label
                 htmlFor="img"
-                className={`absolute left-0 top-0 bg-slate-800 dark:bg-slate-400  dark:font-medium px-3 py-[9px] border-slate-400 dark:border-slate-100 text-base botder text-white dark:text-slate-800`}
+                className={`absolute left-0 top-0 bg-slate-600 px-3.5 py-[11px] text-base botder text-white border border-r-0 rounded-l cursor-pointer`}
               >
                 Choose Profile
               </label>
               <input
                 id="img"
-                className="w-full border border-slate-800 pl-5"
+                className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded pl-8"
                 type="file"
                 placeholder="Name"
                 {...register('photo', { required: true })}
@@ -166,7 +166,7 @@ export default function Register() {
           </div>
           <div>
             <input
-              className="w-full"
+              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
               type="email"
               placeholder="Email"
               {...register('Email', {
@@ -195,7 +195,7 @@ export default function Register() {
                 )}
               </span>
               <input
-                className="w-full"
+                className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
                 type={eye ? 'text' : 'password'}
                 placeholder="Password"
                 {...register('Password', {
@@ -223,7 +223,7 @@ export default function Register() {
           </div>
           <div>
             <input
-              className="w-full"
+              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
               type="password"
               placeholder="Confirm Password"
               {...register('Confirm_Password', { required: true })}
@@ -235,14 +235,9 @@ export default function Register() {
               <p className="text-red-600">Password is not matched!</p>
             )}
           </div>
-          {/* <input
-            className="w-full bg-yellow-600 text-white py-2 font-semibold hover:bg-yellow-700 cursor-pointer duration-200"
-            value="Sign Up"
-            type="submit"
-          /> */}
           <button
             disabled={isLoading}
-            className="w-full bg-yellow-600 text-white py-2 font-semibold hover:bg-yellow-700 cursor-pointer duration-200"
+            className="w-full py-2 font-semibold shadow-md shadow-slate-400 border cursor-pointer duration-200 hover:shadow-lg hover:shadow-slate-200"
           >
             {isLoading ? (
               <ImSpinner9 className="animate-spin text-2xl mx-auto" />
@@ -259,8 +254,8 @@ export default function Register() {
         </p>
         <div>
           <div className="w-full relative h-5 my-5 flex items-center justify-center">
-            <div className="h-[1px] w-full bg-yellow-600"></div>
-            <span className="absolute px-3 font-medium text-gray-900 dark:text-slate-100 -translate-x-1/2 bg-white left-1/2 dark:bg-[#353b48]">
+            <div className="h-[1px] w-full bg-white"></div>
+            <span className="absolute px-3 font-medium text-slate-100 bg-slate-800 -translate-x-1/2 left-1/2">
               or
             </span>
           </div>
@@ -283,7 +278,7 @@ export default function Register() {
               <span className="text-mClr dark:text-white text-2xl">
                 <FaGithub />
               </span>
-              Login With Twitter
+              Login With GitHub
             </button>
           </div>
         </div>
