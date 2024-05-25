@@ -68,7 +68,9 @@ const Nav = () => {
             <ProfileMenu />
           ) : (
             <Link to={'/login'}>
-              <button className="py-2 px-6 shadow-md shadow-slate-200 hover:shadow-slate-200 hover:shadow-lg hover:scale-110 duration-300 rounded ">Login</button>
+              <button className="py-2 px-6 shadow-md shadow-slate-200 hover:shadow-slate-200 hover:shadow-lg hover:scale-110 duration-300 rounded ">
+                Log in
+              </button>
             </Link>
           )}
           <button onClick={() => setMenu(!menu)} className="text-4xl md:hidden">
