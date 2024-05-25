@@ -3,7 +3,7 @@ import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Root from '../root/Root';
-import AllMenu from '../pages/AllMenu/AllMenu';
+import TodayMenu from '../pages/TodayMenu/TodayMenu';
 import MyOrders from '../pages/MyOrders/MyOrders';
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/today-menu',
-        element: <AllMenu />,
+        element: <TodayMenu />,
       },
       {
         path: '/my-orders',

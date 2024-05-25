@@ -12,7 +12,7 @@ const img4 =
 const img5 =
   'https://img.freepik.com/free-photo/high-angle-delicious-food-keyboard_23-2149182227.jpg?t=st=1716614451~exp=1716618051~hmac=97512321bcaba8efcd71e5e5e891d8e29717a1d36c53a2794aa94873c4d17035&w=900';
 
-const AllMenu = () => {
+const TodayMenu = () => {
   return (
     <div>
       {/* Banner Part */}
@@ -30,8 +30,11 @@ const AllMenu = () => {
           </div>
         </div>
       </div>
+      <div>
+        <div className=" py-5 bg-slate-300 w-full"></div>
+      </div>
     </div>
   );
 };
 
-export default AllMenu;
+export default TodayMenu;
