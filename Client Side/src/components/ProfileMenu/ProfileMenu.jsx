@@ -1,60 +1,62 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
+import { GoPlus } from 'react-icons/go';
+import { LuLogOut } from 'react-icons/lu';
+import Swal from 'sweetalert2';
+import { CgProfile } from 'react-icons/cg';
+
 const ProfileMenu = () => {
+  const { userDta, logOutAcc } = useAuth();
+  const logout = () => {
+    logOutAcc();
+    Swal.fire({
+      title: 'Logged Out',
+      text: 'Your account has been successfully logged out.',
+      icon: 'success',
+    });
+  };
   return (
-    <div>
-      <div className="border-2 bg-slate-500 text-white border-orange-400 rounded-md w-[300px] p-4">
-        <div className="space-y-2">
+    <div className="group relative cursor-pointer">
+      <div className="flex items-center justify-between w-full text-center text-white duration-200">
+        <div className="relative group">
           <img
-            src=""
-            alt=""
-            className="h-16 w-16 border border-orange-400 p-2 rounded-full mx-auto"
+            className="size-[60px] bg-slate-500 object-cover rounded-full border-4 border-white shadow-[0px_2px_8px_0px_rgba(99,99,99,0.4)]"
+            src={
+              userDta.photoURL
+                ? userDta.photoURL
+                : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+            }
+            alt="avatar navigate ui"
           />
-          <h2 className="text-2xl font-semibold text-center">
-            {'user.displayName'}
-          </h2>
-          <div className="w-full text-center">
-            <Link to={'profile'}>
-              <button className="border-2 border-orange-400 relative inline-flex items-center justify-start px-6 py-1.5 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-                <span className="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-                  View Profile
-                </span>
-              </button>
-            </Link>
-          </div>
+          <span className="size-5 bg-white p-[2px] shadow-[0px_2px_8px_0px_rgba(99,99,99,0.4)]  group-hover:-rotate-180 duration-500 absolute rounded-full -bottom-2 left-[50%] -translate-x-1/2 text-red-800">
+            <GoPlus />
+          </span>
         </div>
+      </div>
+      <div className="invisible right-0 absolute z-50 flex min-w-48 flex-col bg-gray-500 shadow-4xl group-hover:visible text-center">
         <div>
-          <ul className="flex flex-col gap-3 my-4">
-            <Link
-              className="py-1.5 border rounded-md w-full px-3 hover:border-orange-400 duration-150"
-              to={'/'}
-            >
-              Home
-            </Link>
-            <Link
-              className="py-1.5 border rounded-md w-full px-3 hover:border-orange-400 duration-150"
-              to={'/about'}
-            >
-              About
-            </Link>
-            <Link
-              to={'profile'}
-              className="py-1.5 border rounded-md w-full px-3 hover:border-orange-400 duration-150"
-            >
-              Setting
-            </Link>
-            <Link className="py-1.5 border rounded-md w-full px-3 hover:border-orange-400 duration-150">
-              Privecy policy
-            </Link>
-          </ul>
-          <button
-            // onClick={logOutProfile}
-            className="relative group w-full py-1.5 px-4 border-2 font-bold tracking-widest active:scale-95 duration-150 hover:border-purple-600 hover:text-orange-400 border-orange-400 rounded"
-          >
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-600 group-hover:w-full group-hover:transition-all"></span>
-            Log out
-          </button>
+          <h1 className="py-2 text-2xl bg-slate-800 text-white px-3">
+            {userDta.displayName ? userDta.displayName : 'User Name'}
+          </h1>
         </div>
+        <NavLink
+          to={'/dashboard'}
+          className="font-semibold border-b py-3 tracking-widest flex items-center justify-center gap-1 hover:shadow hover:shadow-slate-200"
+        >
+          <span className="text-2xl">
+            <CgProfile />
+          </span>
+          My Dashboard
+        </NavLink>
+        <button
+          onClick={logout}
+          className="hover:bg-[#c52323] font-semibold border-b bg-sClr py-3 tracking-widest flex items-center justify-center gap-3 hover:shadow hover:shadow-slate-200"
+        >
+          <span className="text-2xl">
+            <LuLogOut />
+          </span>
+          Log Out
+        </button>
       </div>
     </div>
   );
