@@ -9,6 +9,7 @@ import Error from '../pages/Error/Error';
 import PrivetRoute from './PrivetRoute';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import DashboardHome from '../pages/Dashboard/DashboardHome.jsx/DashboardHome';
+import PrivetDashboard from './PrivetDashboard';
 
 const router = createBrowserRouter([
   {
@@ -42,9 +43,9 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: (
-      <PrivetRoute>
+      <PrivetDashboard>
         <Dashboard />
-      </PrivetRoute>
+      </PrivetDashboard>
     ),
     children: [
       {

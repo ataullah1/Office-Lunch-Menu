@@ -85,7 +85,7 @@ const Dashboard = () => {
           </ul>
         </nav>
       </aside>
-      <main className="flex-grow p-4 bg-gray-100">
+      <main className="flex-grow h-screen overflow-y-scroll bg-gray-100">
         <Outlet />
       </main>
     </div>
