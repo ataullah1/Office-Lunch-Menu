@@ -5,10 +5,12 @@ import Register from '../pages/Register/Register';
 import Root from '../root/Root';
 import TodayMenu from '../pages/TodayMenu/TodayMenu';
 import MyOrders from '../pages/MyOrders/MyOrders';
+import Error from '../pages/Error/Error';
 
 const router = createBrowserRouter([
   {
     path: '/',
+    errorElement: <Error />,
     element: <Root />,
     children: [
       {

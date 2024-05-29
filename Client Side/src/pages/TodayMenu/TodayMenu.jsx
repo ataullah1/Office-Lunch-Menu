@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import MenuCard from '../../components/MenuCard/MenuCard';
 import MultyImageBanner from '../../components/MultyImageBanner/MultyImageBanner';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosPub from '../../Hooks/useAxiosPub';
+import Loding from '../Loding/Loding';
+import Error from '../Error/Error';
 
 const img1 =
   'https://img.freepik.com/free-photo/healthy-lunch_1098-13259.jpg?t=st=1716614363~exp=1716617963~hmac=9920e78854a3895e14978703a3416d260959dbd34367b6691da1ceb805f9d506&w=900';
@@ -15,16 +19,24 @@ const img5 =
   'https://img.freepik.com/free-photo/high-angle-delicious-food-keyboard_23-2149182227.jpg?t=st=1716614451~exp=1716618051~hmac=97512321bcaba8efcd71e5e5e891d8e29717a1d36c53a2794aa94873c4d17035&w=900';
 
 const TodayMenu = () => {
-  const [menu, setMenu] = useState([]);
-  useEffect(() => {
-    const data = async () => {
-      const res = await fetch('today-menu.json');
-      const data = await res.json();
-      setMenu(data);
-      console.log(data);
-    };
-    data();
-  }, []);
+  const axioss = useAxiosPub();
+
+  const {
+    data: menu = [],
+    isError,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['today-menu'],
+    queryFn: async () => {
+      const { data } = await axioss.get('/today-menu');
+      return data;
+    },
+  });
+
+  if ((error, isError)) {
+    return <Error />;
+  }
   return (
     <div>
       {/* Banner Part */}
@@ -47,11 +59,15 @@ const TodayMenu = () => {
       <div className="w-11/12 mx-auto">
         <div className="py-8 mt-8 bg-slate-500 rounded-t-md"></div>
         <div className=" w-full">
-          <div className="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-10">
-            {menu.map((dta, i) => (
-              <MenuCard key={i} menu={dta} />
-            ))}
-          </div>
+          {isLoading ? (
+            <Loding />
+          ) : (
+            <div className="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-10">
+              {menu.map((dta) => (
+                <MenuCard key={dta._id} menu={dta} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
