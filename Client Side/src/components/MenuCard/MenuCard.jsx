@@ -1,4 +1,29 @@
+import { useMutation } from '@tanstack/react-query';
+import useAxiosPub from '../../Hooks/useAxiosPub';
+import useAuth from '../../Hooks/useAuth';
+
 const MenuCard = ({ menu }) => {
+  const axioss = useAxiosPub();
+  const { userDta } = useAuth();
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ menu }) => {
+      // console.log(menu);
+      const { data } = await axioss.post('/order', menu);
+      console.log(data);
+    },
+  });
+  const orderFunc = async () => {
+    // console.log(menu);
+    const orderDta = menu;
+    orderDta.orderId = menu._id;
+    delete orderDta._id;
+    orderDta.userName = userDta.displayName;
+    orderDta.userEmail = userDta.email;
+    orderDta.userPhoto = userDta.photoURL;
+    // console.log(orderDta);
+    // return;
+    await mutateAsync({ menu });
+  };
   return (
     <div className="w-full max-w-[500px] mx-auto shadow-lg shadow-slate-700 hover:shadow-slate-200 hover:scale-105 duration-300 rounded-md">
       <div
@@ -23,7 +48,10 @@ const MenuCard = ({ menu }) => {
           <button className="py-2 px-7 rounded-md shadow-md hover:shadow-slate-200 hover:-translate-y-2 duration-300 shadow-slate-500">
             Details
           </button>
-          <button className="py-2 px-7 rounded-md shadow-md hover:shadow-slate-200 hover:-translate-y-2 duration-300 shadow-slate-500">
+          <button
+            onClick={orderFunc}
+            className="py-2 px-7 rounded-md shadow-md hover:shadow-slate-200 hover:-translate-y-2 duration-300 shadow-slate-500"
+          >
             Order
           </button>
         </div>
