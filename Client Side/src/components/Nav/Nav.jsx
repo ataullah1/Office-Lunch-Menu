@@ -13,6 +13,7 @@ const Nav = () => {
   // console.log(userDta);
   const isAdmin = useAdmin();
   console.log(isAdmin);
+
   useEffect(() => {
     const handleScrolled = () => {
       if (window.scrollY > 0) {
@@ -52,13 +53,23 @@ const Nav = () => {
           >
             Today Menu
           </NavLink>
-          <NavLink
-            className="py-2 px-5 rounded-md shadow-md shadow-slate-200 text-white font-medium  hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
-            font-medium
-            to={'/my-orders'}
-          >
-            My Order
-          </NavLink>
+          {isAdmin ? (
+            <NavLink
+              className="py-2 px-5 rounded-md shadow-md shadow-slate-200 text-white font-medium  hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
+              font-medium
+              to={'/Dashboard'}
+            >
+              Dashboard
+            </NavLink>
+          ) : (
+            <NavLink
+              className="py-2 px-5 rounded-md shadow-md shadow-slate-200 text-white font-medium  hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
+              font-medium
+              to={'/my-orders'}
+            >
+              My Order
+            </NavLink>
+          )}
         </div>
         <div className="flex items-center gap-4 relative">
           {isLoading ? (
