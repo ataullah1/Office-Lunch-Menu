@@ -27,12 +27,36 @@ async function run() {
     await client.connect();
 
     const menuCollection = client.db('office_lunchDB').collection('today_menu');
+    const orderCollection = client
+      .db('office_lunchDB')
+      .collection('employee_order');
     const employeesCollection = client
       .db('office_lunchDB')
       .collection('total_employees');
 
     app.get('/today-menu', async (req, res) => {
       const result = await menuCollection.find().toArray();
+      res.send(result);
+    });
+    app.post('/order', async (req, res) => {
+      const data = req.body;
+      // console.log(data);
+      const result = await orderCollection.insertOne(data);
+      res.send(result);
+    });
+
+    app.get('/orderDta/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { userEmail: id };
+      const result = await orderCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    app.delete('/my-order-delete/:id', async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const result = await orderCollection.deleteOne(query);
       res.send(result);
     });
 
