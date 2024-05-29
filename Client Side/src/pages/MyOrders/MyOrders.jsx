@@ -4,6 +4,7 @@ import useAxiosPub from '../../Hooks/useAxiosPub';
 import Error from '../Error/Error';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { ImSpinner3 } from 'react-icons/im';
 
 const noDataImg =
   'https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150570252.jpg?t=st=1716966151~exp=1716969751~hmac=292d7ef949cf63cbd60258b2fcf3a739db3599cd65048c87ed072ebe9195d48d&w=900';
@@ -119,7 +120,11 @@ const MyOrders = () => {
                 </tr>
               </thead>
               <tbody>
-                {my_order.length < 1 ? (
+                {isLoading ? (
+                  <div className="m-14 text-center w-[60px] h-[60px] flex items-center justify-center text-8xl text-white">
+                    <ImSpinner3 className="animate-spin" />
+                  </div>
+                ) : my_order.length < 1 ? (
                   <div className="h-[450px] text-center mx-auto w-full">
                     <img
                       className="max-h-full mx-auto rounded-md"

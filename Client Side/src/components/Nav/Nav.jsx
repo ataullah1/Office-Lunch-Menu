@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CgMenuRightAlt } from 'react-icons/cg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import { ImSpinner9 } from 'react-icons/im';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
@@ -36,27 +36,27 @@ const Nav = () => {
     >
       <div className=" flex justify-between items-center w-11/12 mx-auto">
         <button className="text-3xl font-bold">Logo</button>
-        <div className="hidden md:flex gap-5 items-center">
-          <Link
+        <div className="hidden md:flex gap-5 items-center navigation">
+          <NavLink
             className="py-2 px-5 rounded-md shadow-md shadow-slate-200 text-white font-medium hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
             to={'/'}
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="py-2 px-5 rounded-md shadow-md shadow-slate-200 text-white font-medium  hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
             font-medium
             to={'/today-menu'}
           >
             Today Menu
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="py-2 px-5 rounded-md shadow-md shadow-slate-200 text-white font-medium  hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
             font-medium
             to={'/my-orders'}
           >
             My Order
-          </Link>
+          </NavLink>
         </div>
         <div className="flex items-center gap-4 relative">
           {isLoading ? (
@@ -66,40 +66,40 @@ const Nav = () => {
           ) : userDta ? (
             <ProfileMenu />
           ) : (
-            <Link to={'/login'}>
+            <NavLink to={'/login'}>
               <button className="py-2 px-6 shadow-md shadow-slate-200 hover:shadow-slate-200 hover:shadow-lg hover:scale-110 duration-300 rounded ">
                 Log in
               </button>
-            </Link>
+            </NavLink>
           )}
           <button onClick={() => setMenu(!menu)} className="text-4xl md:hidden">
             <CgMenuRightAlt />
           </button>
           {menu && (
-            <div className="absolute top-12 w-44 rounded-md p-5 right-0 bg-slate-600 md:hidden flex flex-col gap-5 items-center">
-              <Link
+            <div className="absolute top-12 w-44 rounded-md p-5 right-0 bg-slate-600 md:hidden flex flex-col gap-5 items-center navigation">
+              <NavLink
                 onClick={() => setMenu(!menu)}
                 className="py-2 w-full text-center rounded-md shadow-md shadow-slate-200 text-white font-medium hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
                 to={'/'}
               >
                 Home
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 onClick={() => setMenu(!menu)}
                 className="py-2 w-full text-center rounded-md shadow-md shadow-slate-200 text-white font-medium  hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
                 font-medium
                 to={'/today-menu'}
               >
                 Today Menu
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 onClick={() => setMenu(!menu)}
                 className="py-2 w-full text-center rounded-md shadow-md shadow-slate-200 text-white font-medium  hover:shadow-lg hover:shadow-slate-200 hover:scale-110 duration-300"
                 font-medium
                 to={'/my-orders'}
               >
                 My Order
-              </Link>
+              </NavLink>
             </div>
           )}
         </div>

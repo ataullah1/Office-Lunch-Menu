@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import useAxiosPub from '../../Hooks/useAxiosPub';
 import useAuth from '../../Hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const MenuCard = ({ menu }) => {
   const axioss = useAxiosPub();
@@ -9,6 +10,9 @@ const MenuCard = ({ menu }) => {
     mutationFn: async ({ menu }) => {
       // console.log(menu);
       const { data } = await axioss.post('/order', menu);
+      if (data.acknowledged) {
+        toast.success('Order Successfully send.');
+      }
       console.log(data);
     },
   });
