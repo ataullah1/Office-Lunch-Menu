@@ -10,6 +10,8 @@ import PrivetRoute from './PrivetRoute';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import DashboardHome from '../pages/Dashboard/DashboardHome.jsx/DashboardHome';
 import PrivetDashboard from './PrivetDashboard';
+import AllEmployee from '../pages/AllEmployee/AllEmployee';
+import TodayOrders from '../pages/TodayOrders/TodayOrders';
 
 const router = createBrowserRouter([
   {
@@ -53,12 +55,12 @@ const router = createBrowserRouter([
         element: <DashboardHome />,
       },
       {
-        path: '/dashboard/all-employee',
-        element: <DashboardHome />,
+        path: '/dashboard/all-employees',
+        element: <AllEmployee />,
       },
       {
-        path: '/dashboard/today-menus',
-        element: <DashboardHome />,
+        path: '/dashboard/today-orders',
+        element: <TodayOrders />,
       },
     ],
   },

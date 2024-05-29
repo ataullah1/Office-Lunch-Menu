@@ -72,3 +72,6 @@ button {
 .navigation > a.active {
   border: 1.5px solid rgb(5, 189, 103);
 }
+.dashboardNav > li > a.active {
+  background-color: #374151;
+}

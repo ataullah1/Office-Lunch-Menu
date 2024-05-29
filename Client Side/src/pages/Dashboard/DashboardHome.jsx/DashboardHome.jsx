@@ -11,10 +11,24 @@ const DashboardHome = () => {
       return data;
     },
   });
-  console.log(employees);
+  const { data: orderLength = 0 } = useQuery({
+    queryKey: ['order_length'],
+    queryFn: async () => {
+      const { data } = await axioss.get('/orders-length');
+      return data;
+    },
+  });
+  const { data: totalItem = 0 } = useQuery({
+    queryKey: ['totalItem'],
+    queryFn: async () => {
+      const { data } = await axioss.get('/totalItem');
+      return data;
+    },
+  });
+//   console.log(orderLength);
   return (
-    <div className="flex flex-col flex-1 overflow-hidden ">
-      <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 rounded-md">
+    <div className="flex flex-col flex-1 min-h-full overflow-y-auto overflow-x-hidden">
+      <main className="flex-1 bg-gray-200 rounded-md">
         <div className="container px-6 py-8 mx-auto">
           <h3 className="text-3xl font-medium text-gray-700">Dashboard</h3>
 
@@ -93,7 +107,7 @@ const DashboardHome = () => {
 
                   <div className="mx-5">
                     <h4 className="text-2xl font-semibold text-gray-700">
-                      200,521
+                     {orderLength.totalOrder<9?`0${orderLength.totalOrder}`:orderLength.totalOrder}
                     </h4>
                     <div className="text-gray-500">Total Orders</div>
                   </div>
@@ -126,7 +140,7 @@ const DashboardHome = () => {
 
                   <div className="mx-5">
                     <h4 className="text-2xl font-semibold text-gray-700">
-                      215,542
+                    {totalItem.totalItem<9?`0${totalItem.totalItem}`:totalItem.totalItem}
                     </h4>
                     <div className="text-gray-500">Total Items</div>
                   </div>
@@ -138,8 +152,8 @@ const DashboardHome = () => {
           <div className="mt-8"></div>
 
           <div className="flex flex-col mt-8">
-            <div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-              <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+            <div className="py-2 -my-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+              <div className="inline-block min-w-full align-middle border-b border-gray-200 shadow sm:rounded-lg">
                 <table className="min-w-full">
                   <thead>
                     <tr>
@@ -160,7 +174,7 @@ const DashboardHome = () => {
                   </thead>
 
                   <tbody className="bg-white">
-                    {employees.map((dta) => (
+                    {employees.slice(0, 6).map((dta) => (
                       <tr>
                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div className="flex items-center">

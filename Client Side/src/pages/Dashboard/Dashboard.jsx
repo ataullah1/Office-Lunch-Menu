@@ -17,15 +17,19 @@ const Dashboard = () => {
     });
   };
   return (
-    <div className="flex h-screen">
-      <aside className="w-64 bg-gray-800 text-white flex flex-col items-center p-4">
+    <div className="flex h-screen overflow-y-auto min-w-[1000px] overflow-x-auto">
+      <aside className="w-64 bg-gray-800 text-white flex flex-col items-center p-4 h-screen overflow-y-auto">
         <div className="mb-10">
           <h2 className="text-2xl font-bold">Dashboard Logo</h2>
         </div>
         <nav className="w-full">
-          <ul className="list-none p-0">
+          <ul className="list-none p-0 dashboardNav">
             <li className="w-full mb-2">
-              <NavLink className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2">
+              <NavLink
+                end
+                to={'/dashboard'}
+                className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2"
+              >
                 <span>
                   <MdDashboardCustomize />
                 </span>
@@ -33,7 +37,10 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li className="w-full mb-2">
-              <NavLink className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2">
+              <NavLink
+                to={'/dashboard/today-orders'}
+                className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2"
+              >
                 <span>
                   <FaFirstOrder />
                 </span>
@@ -41,14 +48,17 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li className="w-full mb-2">
-              <NavLink className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2">
+              <NavLink
+                to={'/dashboard/all-employees'}
+                className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2"
+              >
                 <span>
                   <FaUsersCog />
                 </span>
                 All Employees
               </NavLink>
             </li>
-            <hr />
+            <hr className="my-3" />
             <li className="w-full mb-2">
               <Link
                 to={'/'}
@@ -85,7 +95,7 @@ const Dashboard = () => {
           </ul>
         </nav>
       </aside>
-      <main className="flex-grow h-screen overflow-y-scroll bg-gray-100">
+      <main className="flex-grow h-screen overflow-y-auto bg-gray-100">
         <Outlet />
       </main>
     </div>
