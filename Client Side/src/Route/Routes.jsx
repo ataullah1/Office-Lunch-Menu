@@ -6,6 +6,7 @@ import Root from '../root/Root';
 import TodayMenu from '../pages/TodayMenu/TodayMenu';
 import MyOrders from '../pages/MyOrders/MyOrders';
 import Error from '../pages/Error/Error';
+import PrivetRoute from './PrivetRoute';
 
 const router = createBrowserRouter([
   {
@@ -19,11 +20,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/today-menu',
-        element: <TodayMenu />,
+        element: (
+          <PrivetRoute>
+            <TodayMenu />
+          </PrivetRoute>
+        ),
       },
       {
         path: '/my-orders',
-        element: <MyOrders />,
+        element: (
+          <PrivetRoute>
+            <MyOrders />
+          </PrivetRoute>
+        ),
       },
     ],
   },

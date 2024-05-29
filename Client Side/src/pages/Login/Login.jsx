@@ -90,8 +90,6 @@ export default function Login() {
           employeePhoto,
           power,
         };
-        // const { data } = await axioss.post('/employee', employeeDta);
-        // console.log(data);
         await mutateAsync({ employeeDta });
 
         naviget(location?.state ? location.state : '/');
@@ -119,9 +117,9 @@ export default function Login() {
   }
   return (
     <div className="bg-slate-800 text-white min-h-screen">
-      <div className="w-10/12 mx-auto">
+      <div className="w-10/12 mx-auto py-10">
         <h1 className="text-center pt-10 pb-8 text-3xl underline sm:text-4xl font-bold font-mono">
-          SignUp Snowy Restaurant
+          SignIn Lunch Menu
         </h1>
         <div className="w-full md:w-[500px] mx-auto">
           <form

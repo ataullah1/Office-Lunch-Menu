@@ -151,7 +151,10 @@ export default function Register() {
   }
   return (
     <div className="bg-slate-800 text-white min-h-screen">
-      <div className="w-10/12 mx-auto p-28">
+      <div className="w-10/12 mx-auto py-10">
+        <h1 className="text-center pt-10 pb-8 text-3xl underline sm:text-4xl font-bold font-mono">
+          SignUp Lunch Menu
+        </h1>
         <div className="w-full md:w-[500px] mx-auto">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -179,7 +182,7 @@ export default function Register() {
                 </label>
                 <input
                   id="img"
-                  className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded pl-8"
+                  className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded pl-9"
                   type="file"
                   placeholder="Name"
                   {...register('photo', { required: true })}

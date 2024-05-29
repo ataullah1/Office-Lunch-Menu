@@ -12,13 +12,8 @@ const Root = () => {
   //   setNavView(false);
   // }
   return (
-<<<<<<< HEAD
     <div className="bg-slate-800 text-white">
       <Toaster />
-      {/* {navView && <Nav />} */}
-=======
-    <div className="bg-slate-800 text-slate-100">
->>>>>>> account
       <Nav />
       <Outlet />
       <Footer />
