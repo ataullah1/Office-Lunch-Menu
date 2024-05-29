@@ -8,8 +8,10 @@ import { ImSpinner9 } from 'react-icons/im';
 import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
 import useAuth from '../../Hooks/useAuth';
+import useAxiosPub from '../../Hooks/useAxiosPub';
 
 export default function Register() {
+  const axioss = useAxiosPub();
   const [errPass, setErrPass] = useState(false);
   const [imgErr, setImgErr] = useState(null);
   const [eye, setEye] = useState(false);
@@ -58,13 +60,7 @@ export default function Register() {
       // console.log(allDta);
       const result = await emlPassRegister(email, password);
       console.log(result.user);
-      // const jwtRequet = async () => {
-      //   const { data } = await axiosSecu.post(`/jwt`, {
-      //     email: result?.user?.email,
-      //   });
-      //   console.log('JWT Token,', data);
-      // };
-      // jwtRequet();
+
       // Update Profile
       await profileUpdate(name, imgUrl);
       Swal.fire({
@@ -72,7 +68,14 @@ export default function Register() {
         text: 'Your account has been successfully created. Please Login Now.',
         icon: 'success',
       });
-
+      if (result.user) {
+        const employeeName = result.user.displayName;
+        const employeeEmail = result.user.email;
+        const power = 'employee';
+        const employeeDta = { employeeName, employeeEmail, power };
+        const { data } = await axioss.post('/employee', employeeDta);
+        console.log(data);
+      }
       reset();
       // naviget('/login');
       naviget(location?.state ? location.state : '/');
@@ -92,15 +95,17 @@ export default function Register() {
   // all Social Login
   const socialLogin = (socialLogin) => {
     socialLogin()
-      .then((result) => {
+      .then(async (result) => {
         const user = result.user;
-        // const jwtRequet = async () => {
-        //   const { data } = await axiosSecu.post(`/jwt`, {
-        //     email: user?.email,
-        //   });
-        //   console.log('JWT Token,', data);
-        // };
-        // jwtRequet();
+        if (user) {
+          const employeeName = user.displayName;
+          const employeeEmail = user.email;
+          const power = 'employee';
+          const employeeDta = { employeeName, employeeEmail, power };
+          console.log(employeeDta);
+          const { data } = await axioss.post('/employee', employeeDta);
+          console.log(data);
+        }
 
         naviget(location?.state ? location.state : '/');
         console.log(user);

@@ -7,10 +7,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImSpinner9 } from 'react-icons/im';
 import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
-import useAxiosSec from '../../Hooks/useAxiosSec';
+import useAxiosPub from '../../Hooks/useAxiosPub';
 
 export default function Login() {
-  const axioss = useAxiosSec();
+  const axioss = useAxiosPub();
   const [eye, setEye] = useState(false);
   const naviget = useNavigate();
   const location = useLocation();
@@ -42,13 +42,6 @@ export default function Login() {
 
       const result = await emlPassLogin(email, password);
       console.log(result.user);
-      // const jwtRequet = async () => {
-      //   const { data } = await axiosSecu.post(`/jwt`, {
-      //     email: result?.user?.email,
-      //   });
-      //   console.log('JWT Token,', data);
-      // };
-      // jwtRequet();
 
       Swal.fire({
         title: 'Good job!',
@@ -77,22 +70,15 @@ export default function Login() {
     socialLogin()
       .then(async (result) => {
         const user = result.user;
-        // const jwtRequet = async () => {
-        //   const { data } = await axiosSecu.post(`/jwt`, {
-        //     email: user?.email,
-        //   });
-        //   console.log('JWT Token,', data);
-        // };
-        // jwtRequet();
 
-        const userEmail = result.user.email;
-        const userName = result.user.displayName;
-        const userDta = {
-          userEmail,
-          userName,
-        };
-        const { data: userDtaa } = await axioss.post('/users', userDta);
-        console.log(userDtaa);
+        if (user) {
+          const employeeName = user.displayName;
+          const employeeEmail = user.email;
+          const power = 'employee';
+          const employeeDta = { employeeName, employeeEmail, power };
+          const { data } = await axioss.post('/employee', employeeDta);
+          console.log(data);
+        }
         naviget(location?.state ? location.state : '/');
         console.log(user);
         Swal.fire({
@@ -107,7 +93,7 @@ export default function Login() {
         console.log(errorMessage);
         Swal.fire({
           title: 'Oops...!',
-          text: 'Sorry, your account could not be logged in!',
+          text: `Sorry, your account could not be logged in! ${errorMessage}`,
           icon: 'error',
         });
       });
