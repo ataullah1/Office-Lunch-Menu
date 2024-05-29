@@ -125,7 +125,7 @@ const MyOrders = () => {
                     <ImSpinner3 className="animate-spin" />
                   </div>
                 ) : my_order.length < 1 ? (
-                  <div className="h-[450px] text-center mx-auto w-full">
+                  <div className="h-[450px] flex items-center justify-center text-center mx-auto w-full px-5">
                     <img
                       className="max-h-full mx-auto rounded-md"
                       src={noDataImg}
