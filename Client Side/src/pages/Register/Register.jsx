@@ -151,7 +151,7 @@ export default function Register() {
   }
   return (
     <div className="bg-slate-800 text-white min-h-screen">
-      <div className="w-10/12 mx-auto p-10">
+      <div className="w-10/12 mx-auto p-28">
         <div className="w-full md:w-[500px] mx-auto">
           <form
             onSubmit={handleSubmit(onSubmit)}
