@@ -8,12 +8,21 @@ import { ImSpinner9 } from 'react-icons/im';
 import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
 import useAxiosPub from '../../Hooks/useAxiosPub';
+import { useMutation } from '@tanstack/react-query';
 
 export default function Login() {
   const axioss = useAxiosPub();
   const [eye, setEye] = useState(false);
   const naviget = useNavigate();
   const location = useLocation();
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ employeeDta }) => {
+      const { data } = await axioss.post('/employee', employeeDta);
+      console.log(data);
+    },
+  });
+
   const {
     emlPassLogin,
     gitHubLogin,
@@ -71,14 +80,20 @@ export default function Login() {
       .then(async (result) => {
         const user = result.user;
 
-        if (user) {
-          const employeeName = user.displayName;
-          const employeeEmail = user.email;
-          const power = 'employee';
-          const employeeDta = { employeeName, employeeEmail, power };
-          const { data } = await axioss.post('/employee', employeeDta);
-          console.log(data);
-        }
+        const employeeName = user.displayName;
+        const employeeEmail = user.email;
+        const employeePhoto = user.photoURL;
+        const power = 'employee';
+        const employeeDta = {
+          employeeName,
+          employeeEmail,
+          employeePhoto,
+          power,
+        };
+        // const { data } = await axioss.post('/employee', employeeDta);
+        // console.log(data);
+        await mutateAsync({ employeeDta });
+
         naviget(location?.state ? location.state : '/');
         console.log(user);
         Swal.fire({

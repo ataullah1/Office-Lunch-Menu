@@ -9,6 +9,7 @@ import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosPub from '../../Hooks/useAxiosPub';
+import { useMutation } from '@tanstack/react-query';
 
 export default function Register() {
   const axioss = useAxiosPub();
@@ -16,6 +17,14 @@ export default function Register() {
   const [imgErr, setImgErr] = useState(null);
   const [eye, setEye] = useState(false);
   const naviget = useNavigate();
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ employeeDta }) => {
+      const { data } = await axioss.post('/employee', employeeDta);
+      console.log(data);
+    },
+  });
+
   const {
     emlPassRegister,
     gitHubLogin,
@@ -71,10 +80,15 @@ export default function Register() {
       if (result.user) {
         const employeeName = result.user.displayName;
         const employeeEmail = result.user.email;
+        const employeePhoto = user.photoURL;
         const power = 'employee';
-        const employeeDta = { employeeName, employeeEmail, power };
-        const { data } = await axioss.post('/employee', employeeDta);
-        console.log(data);
+        const employeeDta = {
+          employeeName,
+          employeeEmail,
+          employeePhoto,
+          power,
+        };
+        await mutateAsync({ employeeDta });
       }
       reset();
       // naviget('/login');
@@ -97,15 +111,19 @@ export default function Register() {
     socialLogin()
       .then(async (result) => {
         const user = result.user;
-        if (user) {
-          const employeeName = user.displayName;
-          const employeeEmail = user.email;
-          const power = 'employee';
-          const employeeDta = { employeeName, employeeEmail, power };
-          console.log(employeeDta);
-          const { data } = await axioss.post('/employee', employeeDta);
-          console.log(data);
-        }
+
+        const employeeName = user.displayName;
+        const employeeEmail = user.email;
+        const employeePhoto = user.photoURL;
+        const power = 'employee';
+        const employeeDta = {
+          employeeName,
+          employeeEmail,
+          employeePhoto,
+          power,
+        };
+        // console.log(employeeDta);
+        await mutateAsync({ employeeDta });
 
         naviget(location?.state ? location.state : '/');
         console.log(user);
