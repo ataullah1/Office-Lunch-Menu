@@ -4,37 +4,15 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import { ImSpinner9 } from 'react-icons/im';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
-import { useQuery } from '@tanstack/react-query';
-import useAxiosPub from '../../Hooks/useAxiosPub';
-import Loding from '../../pages/Loding/Loding';
-import Error from '../../pages/Error/Error';
+import useAdmin from '../../Hooks/useAdmin';
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { userDta, isLoading } = useAuth();
-  const axioss = useAxiosPub();
   // console.log(userDta);
-
-  const {
-    data: isAdmin = [],
-    isError,
-    error,
-    isLoading: loding,
-  } = useQuery({
-    queryKey: ['admin'],
-    queryFn: async () => {
-      const { data } = await axioss.get(`/admin?email=${userDta.email}`);
-      return data;
-    },
-  });
-  // console.log(isAdmin);
-  if (isAdmin) {
-    console.log('ami admin');
-  }else{
-    console.log('nah ami admin na');
-  }
-
+  const isAdmin = useAdmin();
+  console.log(isAdmin);
   useEffect(() => {
     const handleScrolled = () => {
       if (window.scrollY > 0) {
@@ -49,13 +27,6 @@ const Nav = () => {
     };
   }, []);
   // console.log(scrolled);
-
-  if ((error, isError)) {
-    return <Error />;
-  }
-  if (loding) {
-    return <Loding />;
-  }
   return (
     // <div className="fixed left-0 top-0 z-50 w-full" >
     <div

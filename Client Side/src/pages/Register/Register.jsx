@@ -150,160 +150,165 @@ export default function Register() {
     return <Loding />;
   }
   return (
-    <div className="w-10/12 mx-auto pt-28">
-      <div className="w-full md:w-[500px] mx-auto">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-          <div>
-            <input
-              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
-              type="text"
-              placeholder="Name"
-              {...register('Name', { required: true, maxLength: 20 })}
-            />
-
-            {errors.Name && (
-              <span className="text-red-600">Please Input Your Name</span>
-            )}
-          </div>
-          <div>
-            <div className="relative">
-              <label
-                htmlFor="img"
-                className={`absolute left-0 top-0 bg-slate-600 px-3.5 py-[11px] text-base botder text-white border border-r-0 rounded-l cursor-pointer`}
-              >
-                Choose Profile
-              </label>
-              <input
-                id="img"
-                className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded pl-8"
-                type="file"
-                placeholder="Name"
-                {...register('photo', { required: true })}
-              />
-            </div>
-            {errors.photo && (
-              <span className="text-red-600">Please Upload Your Photo</span>
-            )}
-            {imgErr && (
-              <span className="text-red-600">Please Upload Your Photo</span>
-            )}
-          </div>
-          <div>
-            <input
-              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
-              type="email"
-              placeholder="Email"
-              {...register('Email', {
-                required: true,
-                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-              })}
-            />
-            {errors.Email?.type === 'required' && (
-              <p className="text-red-600">Please Input Your Email.</p>
-            )}
-            {errors.Email?.type === 'pattern' && (
-              <p className="text-red-600">Invalid Email</p>
-            )}
-          </div>
-          <div>
-            <div className="relative">
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xl cursor-pointer">
-                {eye ? (
-                  <span onClick={() => setEye(!eye)}>
-                    <FaEyeSlash />
-                  </span>
-                ) : (
-                  <span onClick={() => setEye(!eye)}>
-                    <FaEye />
-                  </span>
-                )}
-              </span>
+    <div className="bg-slate-800 text-white min-h-screen">
+      <div className="w-10/12 mx-auto p-10">
+        <div className="w-full md:w-[500px] mx-auto">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
+            <div>
               <input
                 className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
-                type={eye ? 'text' : 'password'}
-                placeholder="Password"
-                {...register('Password', {
+                type="text"
+                placeholder="Name"
+                {...register('Name', { required: true, maxLength: 20 })}
+              />
+
+              {errors.Name && (
+                <span className="text-red-600">Please Input Your Name</span>
+              )}
+            </div>
+            <div>
+              <div className="relative">
+                <label
+                  htmlFor="img"
+                  className={`absolute left-0 top-0 bg-slate-600 px-3.5 py-[11px] text-base botder text-white border border-r-0 rounded-l cursor-pointer`}
+                >
+                  Choose Profile
+                </label>
+                <input
+                  id="img"
+                  className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded pl-8"
+                  type="file"
+                  placeholder="Name"
+                  {...register('photo', { required: true })}
+                />
+              </div>
+              {errors.photo && (
+                <span className="text-red-600">Please Upload Your Photo</span>
+              )}
+              {imgErr && (
+                <span className="text-red-600">Please Upload Your Photo</span>
+              )}
+            </div>
+            <div>
+              <input
+                className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
+                type="email"
+                placeholder="Email"
+                {...register('Email', {
                   required: true,
-                  max: 20,
-                  min: 6,
-                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                  pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                 })}
               />
+              {errors.Email?.type === 'required' && (
+                <p className="text-red-600">Please Input Your Email.</p>
+              )}
+              {errors.Email?.type === 'pattern' && (
+                <p className="text-red-600">Invalid Email</p>
+              )}
             </div>
-            {errors.Password?.type === 'required' && (
-              <p className="text-red-600">Please Input a Password.</p>
-            )}
-            {errors.Password?.type === 'min' && (
-              <p className="text-red-600">Password must be 6 word</p>
-            )}
-            {errors.Password?.type === 'max' && (
-              <p className="text-red-600">Password must be less 20 word</p>
-            )}
-            {errors.Password?.type === 'pattern' && (
-              <p className="text-red-600">
-                Password must be uppercase, lowercase & number
-              </p>
-            )}
-          </div>
+            <div>
+              <div className="relative">
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xl cursor-pointer">
+                  {eye ? (
+                    <span onClick={() => setEye(!eye)}>
+                      <FaEyeSlash />
+                    </span>
+                  ) : (
+                    <span onClick={() => setEye(!eye)}>
+                      <FaEye />
+                    </span>
+                  )}
+                </span>
+                <input
+                  className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
+                  type={eye ? 'text' : 'password'}
+                  placeholder="Password"
+                  {...register('Password', {
+                    required: true,
+                    max: 20,
+                    min: 6,
+                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                  })}
+                />
+              </div>
+              {errors.Password?.type === 'required' && (
+                <p className="text-red-600">Please Input a Password.</p>
+              )}
+              {errors.Password?.type === 'min' && (
+                <p className="text-red-600">Password must be 6 word</p>
+              )}
+              {errors.Password?.type === 'max' && (
+                <p className="text-red-600">Password must be less 20 word</p>
+              )}
+              {errors.Password?.type === 'pattern' && (
+                <p className="text-red-600">
+                  Password must be uppercase, lowercase & number
+                </p>
+              )}
+            </div>
+            <div>
+              <input
+                className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
+                type="password"
+                placeholder="Confirm Password"
+                {...register('Confirm_Password', { required: true })}
+              />
+              {errors.Confirm_Password?.type === 'required' && (
+                <p className="text-red-600">Confirm Password.</p>
+              )}
+              {errPass && (
+                <p className="text-red-600">Password is not matched!</p>
+              )}
+            </div>
+            <button
+              disabled={isLoading}
+              className="rounded w-full py-2 font-semibold shadow-md shadow-slate-400 border cursor-pointer duration-200 hover:shadow-lg hover:shadow-slate-200"
+            >
+              {isLoading ? (
+                <ImSpinner9 className="animate-spin text-2xl mx-auto" />
+              ) : (
+                'Sign up'
+              )}
+            </button>
+          </form>
+          <p className="pt-3 text-slate-800 dark:text-slate-100">
+            Already have an account?{' '}
+            <Link to={'/login'} className="underline text-mClr">
+              Login
+            </Link>
+          </p>
           <div>
-            <input
-              className="w-full bg-transparent shadow-md shadow-slate-500 px-3 py-2 border rounded"
-              type="password"
-              placeholder="Confirm Password"
-              {...register('Confirm_Password', { required: true })}
-            />
-            {errors.Confirm_Password?.type === 'required' && (
-              <p className="text-red-600">Confirm Password.</p>
-            )}
-            {errPass && (
-              <p className="text-red-600">Password is not matched!</p>
-            )}
-          </div>
-          <button
-            disabled={isLoading}
-            className="rounded w-full py-2 font-semibold shadow-md shadow-slate-400 border cursor-pointer duration-200 hover:shadow-lg hover:shadow-slate-200"
-          >
-            {isLoading ? (
-              <ImSpinner9 className="animate-spin text-2xl mx-auto" />
-            ) : (
-              'Sign up'
-            )}
-          </button>
-        </form>
-        <p className="pt-3 text-slate-800 dark:text-slate-100">
-          Already have an account?{' '}
-          <Link to={'/login'} className="underline text-mClr">
-            Login
-          </Link>
-        </p>
-        <div>
-          <div className="w-full relative h-5 my-5 flex items-center justify-center">
-            <div className="h-[1px] w-full bg-white"></div>
-            <span className="absolute px-3 font-medium text-slate-100 bg-slate-800 -translate-x-1/2 left-1/2">
-              or
-            </span>
-          </div>
-          <div className="flex flex-col lg:flex-row gap-2 xl:gap-3 w-full text-slate-900 dark:text-stone-100">
-            <button
-              disabled={isLoading}
-              onClick={() => socialLogin(googleLogin)}
-              className="py-2 px-1 w-full font-medium border hover:shadow-lg shadow-indigo-900/20 rounded-md flex items-center justify-center gap-1 border-mClr"
-            >
-              <span className=" text-2xl">
-                <FcGoogle />
+            <div className="w-full relative h-5 my-5 flex items-center justify-center">
+              <div className="h-[1px] w-full bg-white"></div>
+              <span className="absolute px-3 font-medium text-slate-100 bg-slate-800 -translate-x-1/2 left-1/2">
+                or
               </span>
-              Login With Google
-            </button>
-            <button
-              disabled={isLoading}
-              onClick={() => socialLogin(gitHubLogin)}
-              className="py-2 px-1 w-full font-medium border hover:shadow-lg shadow-blue-500/20 rounded-md  flex items-center justify-center gap-1 border-mClr"
-            >
-              <span className="text-mClr dark:text-white text-2xl">
-                <FaGithub />
-              </span>
-              Login With GitHub
-            </button>
+            </div>
+            <div className="flex flex-col lg:flex-row gap-2 xl:gap-3 w-full text-slate-900 dark:text-stone-100">
+              <button
+                disabled={isLoading}
+                onClick={() => socialLogin(googleLogin)}
+                className="py-2 px-1 w-full font-medium border hover:shadow-lg shadow-indigo-900/20 rounded-md flex items-center justify-center gap-1 border-mClr"
+              >
+                <span className=" text-2xl">
+                  <FcGoogle />
+                </span>
+                Login With Google
+              </button>
+              <button
+                disabled={isLoading}
+                onClick={() => socialLogin(gitHubLogin)}
+                className="py-2 px-1 w-full font-medium border hover:shadow-lg shadow-blue-500/20 rounded-md  flex items-center justify-center gap-1 border-mClr"
+              >
+                <span className="text-mClr dark:text-white text-2xl">
+                  <FaGithub />
+                </span>
+                Login With GitHub
+              </button>
+            </div>
           </div>
         </div>
       </div>
