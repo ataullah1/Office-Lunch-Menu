@@ -26,6 +26,9 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const employeeCollection = client
+      .db('office_lunchDB')
+      .collection('employee');
     const menuCollection = client.db('office_lunchDB').collection('today_menu');
     const orderCollection = client
       .db('office_lunchDB')
@@ -38,6 +41,36 @@ async function run() {
       const result = await menuCollection.find().toArray();
       res.send(result);
     });
+    app.post('/employee', async (req, res) => {
+      const user = req.body;
+      console.log(user);
+      // return;
+      const query = { employeeEmail: user.employeeEmail };
+      const existEmloyee = await employeeCollection.findOne(query);
+      if (existEmloyee) {
+        return res.send({ message: 'User Allready Exists', insertedId: null });
+      }
+      const result = await employeeCollection.insertOne(user);
+      res.send(result);
+    });
+    app.get('/employees', async (req, res) => {
+      const result = await employeeCollection.find().toArray();
+      res.send(result);
+    });
+    app.get('/user/admin/:email', async (req, res) => {
+      const email = req.params.email;
+      console.log(email);
+      const query = { employeeEmail: email, power: 'admin' };
+      const result = await employeeCollection.findOne(query);
+      let admin = false;
+      if (result?.power === 'admin') {
+        admin = true;
+      }
+      console.log(admin);
+
+      res.send({ admin });
+    });
+
     app.post('/order', async (req, res) => {
       const data = req.body;
       // console.log(data);
