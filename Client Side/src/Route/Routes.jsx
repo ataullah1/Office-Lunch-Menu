@@ -12,6 +12,7 @@ import DashboardHome from '../pages/Dashboard/DashboardHome.jsx/DashboardHome';
 import PrivetDashboard from './PrivetDashboard';
 import AllEmployee from '../pages/AllEmployee/AllEmployee';
 import TodayOrders from '../pages/TodayOrders/TodayOrders';
+import AddItems from '../pages/AddItems/AddItems';
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/today-orders',
         element: <TodayOrders />,
+      },
+      {
+        path: '/dashboard/add-items',
+        element: <AddItems />,
       },
     ],
   },

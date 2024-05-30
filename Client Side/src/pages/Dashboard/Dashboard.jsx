@@ -1,7 +1,11 @@
 import React from 'react';
 import { FaFirstOrder, FaHome, FaUsersCog } from 'react-icons/fa';
 import { LuLogOut } from 'react-icons/lu';
-import { MdDashboardCustomize, MdOutlineMenuBook } from 'react-icons/md';
+import {
+  MdAddChart,
+  MdDashboardCustomize,
+  MdOutlineMenuBook,
+} from 'react-icons/md';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
@@ -45,6 +49,17 @@ const Dashboard = () => {
                   <FaFirstOrder />
                 </span>
                 Today Orders
+              </NavLink>
+            </li>
+            <li className="w-full mb-2">
+              <NavLink
+                to={'/dashboard/add-items'}
+                className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2"
+              >
+                <span>
+                  <MdAddChart />
+                </span>
+                Add Items
               </NavLink>
             </li>
             <li className="w-full mb-2">
