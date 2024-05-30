@@ -9,6 +9,7 @@ import {
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Toaster } from 'react-hot-toast';
 
 const Dashboard = () => {
   const { logOutAcc } = useAuth();
@@ -22,6 +23,7 @@ const Dashboard = () => {
   };
   return (
     <div className="flex h-screen overflow-y-auto min-w-[1000px] overflow-x-auto">
+      <Toaster />
       <aside className="w-64 bg-gray-800 text-white flex flex-col items-center p-4 h-screen overflow-y-auto">
         <div className="mb-10">
           <h2 className="text-2xl font-bold">Dashboard Logo</h2>

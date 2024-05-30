@@ -38,7 +38,7 @@ const MyOrders = () => {
     },
   });
 
-  //  Delete Recommendation======
+  //  Delete Order======
   const { mutateAsync } = useMutation({
     mutationFn: async ({ id }) => {
       const { data } = await axioss.delete(`/my-order-delete/${id}`);

@@ -1,16 +1,92 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import React, { useState } from 'react';
 import useAxiosPub from '../../../Hooks/useAxiosPub';
+import Swal from 'sweetalert2';
+import { ImSpinner3 } from 'react-icons/im';
 
 const DashboardHome = () => {
+  const [viewBtn, setViewBtn] = useState(null);
   const axioss = useAxiosPub();
-  const { data: employees = [] } = useQuery({
+  const queryClient = useQueryClient();
+
+  const toggle = (id) => {
+    if (viewBtn === id) {
+      setViewBtn(null);
+    } else {
+      setViewBtn(id);
+    }
+  };
+
+  const {
+    data: employees = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
     queryKey: ['employees'],
     queryFn: async () => {
       const { data } = await axioss.get('/employees');
       return data;
     },
   });
+
+  // Handle admin ======
+  const { mutateAsync } = useMutation({
+    mutationFn: async (dta) => {
+      console.log(dta[0], dta[1]);
+      const { data } = await axioss.patch(
+        `/change-power?power=${dta[0]}&id=${dta[1]}`
+      );
+      console.log(data);
+    },
+    onSuccess: () => {
+      refetch();
+      queryClient.invalidateQueries(['employees']);
+      console.log('Updated Power');
+    },
+  });
+  const handleAddAdmin = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to admin ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Add Admin!',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await mutateAsync(['admin', id]);
+        toggle(id);
+        toast.success('Successfully Admin.');
+      }
+    });
+  };
+  const handleRemoveAdmin = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to remove admin?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Remove Admin!',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await mutateAsync(['employee', id]);
+        toast.success('Successfully Remove Admin');
+        toggle(id);
+      }
+    });
+  };
+  if (isError || error) {
+    Swal.fire({
+      title: 'Network Error',
+      text: `Check network, ${error.message}`,
+    });
+  }
+
   const { data: orderLength = 0 } = useQuery({
     queryKey: ['order_length'],
     queryFn: async () => {
@@ -25,7 +101,7 @@ const DashboardHome = () => {
       return data;
     },
   });
-//   console.log(orderLength);
+  //   console.log(orderLength);
   return (
     <div className="flex flex-col flex-1 min-h-full overflow-y-auto overflow-x-hidden">
       <main className="flex-1 bg-gray-200 rounded-md">
@@ -107,7 +183,9 @@ const DashboardHome = () => {
 
                   <div className="mx-5">
                     <h4 className="text-2xl font-semibold text-gray-700">
-                     {orderLength.totalOrder<9?`0${orderLength.totalOrder}`:orderLength.totalOrder}
+                      {orderLength.totalOrder < 9
+                        ? `0${orderLength.totalOrder}`
+                        : orderLength.totalOrder}
                     </h4>
                     <div className="text-gray-500">Total Orders</div>
                   </div>
@@ -140,7 +218,9 @@ const DashboardHome = () => {
 
                   <div className="mx-5">
                     <h4 className="text-2xl font-semibold text-gray-700">
-                    {totalItem.totalItem<9?`0${totalItem.totalItem}`:totalItem.totalItem}
+                      {totalItem.totalItem < 9
+                        ? `0${totalItem.totalItem}`
+                        : totalItem.totalItem}
                     </h4>
                     <div className="text-gray-500">Total Items</div>
                   </div>
@@ -173,58 +253,85 @@ const DashboardHome = () => {
                     </tr>
                   </thead>
 
-                  <tbody className="bg-white">
-                    {employees.slice(0, 6).map((dta) => (
-                      <tr>
-                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div className="flex items-center">
-                            <div className="flex-shrink-0 w-10 h-10">
-                              <img
-                                className="w-10 h-10 rounded-full"
-                                src={dta?.employeePhoto}
-                                alt=""
-                              />
-                            </div>
+                  {isLoading ? (
+                    <div className="text-slate-800 m-14 text-center w-[60px] h-[60px] flex items-center justify-center text-8xl ">
+                      <ImSpinner3 className="animate-spin" />
+                    </div>
+                  ) : (
+                    <tbody className="bg-white">
+                      {employees.slice(0, 6).map((dta) => (
+                        <tr>
+                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 w-10 h-10">
+                                <img
+                                  className="w-10 h-10 rounded-full"
+                                  src={dta?.employeePhoto}
+                                  alt=""
+                                />
+                              </div>
 
-                            <div className="ml-4">
-                              <div className="text-sm font-medium leading-5 text-gray-900">
-                                {dta?.employeeName}
+                              <div className="ml-4">
+                                <div className="text-sm font-medium leading-5 text-gray-900">
+                                  {dta?.employeeName}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </td>
+                          </td>
 
-                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div className="text-sm leading-5 text-gray-900">
-                            {dta?.employeeEmail}
-                          </div>
-                        </td>
+                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div className="text-sm leading-5 text-gray-900">
+                              {dta?.employeeEmail}
+                            </div>
+                          </td>
 
-                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                            Active
-                          </span>
-                        </td>
+                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                              Active
+                            </span>
+                          </td>
 
-                        <td className="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                          {dta.superPower ? dta.superPower : dta.power}
-                        </td>
+                          <td className="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                            {dta.superPower ? dta.superPower : dta.power}
+                          </td>
 
-                        <td className="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
-                          <button
-                            disabled={employees.superPower && true}
-                            className={
-                              employees.superPower
-                                ? 'text-slate-700'
-                                : `text-indigo-600 hover:text-indigo-900`
-                            }
-                          >
-                            Edit
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                          <td className="px-6 relative py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
+                            <button
+                              disabled={dta.superPower}
+                              onClick={() => toggle(dta._id)}
+                              className={
+                                dta.superPower
+                                  ? 'text-slate-300'
+                                  : `text-indigo-600 hover:text-indigo-900`
+                              }
+                            >
+                              Edit
+                            </button>
+
+                            {viewBtn === dta._id && (
+                              <div className="absolute z-20 top-10 right-12">
+                                {dta.power === 'admin' ? (
+                                  <button
+                                    onClick={() => handleRemoveAdmin(dta._id)}
+                                    className="py-2 w-28 border bg-white rounded-md "
+                                  >
+                                    Remove Admin
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => handleAddAdmin(dta._id)}
+                                    className="py-2 w-24 border bg-white rounded-md "
+                                  >
+                                    Add Admin
+                                  </button>
+                                )}
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  )}
                 </table>
               </div>
             </div>
