@@ -6,7 +6,15 @@ require('dotenv').config();
 const port = process.env.PORT || 3000;
 
 // Middleware ==============
-app.use(cors());
+const options = {
+  origin: [
+    'http://localhost:5173',
+    'https://office-lunch-menu.web.app',
+    'https://office-lunch-menu.firebaseapp.com',
+  ],
+  optionsSuccessStatus: 200,
+};
+app.use(cors(options));
 app.use(express.json());
 
 // MongoDB URI
