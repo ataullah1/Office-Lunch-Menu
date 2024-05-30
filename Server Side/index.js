@@ -112,6 +112,20 @@ async function run() {
       res.send(result);
     });
 
+    app.patch('/order-update', async (req, res) => {
+      const id = req.query.id;
+      const statusDta = req.query.status;
+      // console.log('id:', id, '  status: ', statusDta);
+      const query = { _id: new ObjectId(id) };
+      const docUpdate = {
+        $set: {
+          status: statusDta,
+        },
+      };
+      const result = orderCollection.updateOne(query, docUpdate);
+      res.send(result);
+    });
+
     app.delete('/my-order-delete/:id', async (req, res) => {
       const id = req.params.id;
       console.log(id);
