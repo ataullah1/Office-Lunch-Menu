@@ -6,7 +6,15 @@ require('dotenv').config();
 const port = process.env.PORT || 3000;
 
 // Middleware ==============
-app.use(cors());
+const options = {
+  origin: [
+    'http://localhost:5173',
+    'https://office-lunch-menu.web.app',
+    'https://office-lunch-menu.firebaseapp.com',
+  ],
+  optionsSuccessStatus: 200,
+};
+app.use(cors(options));
 app.use(express.json());
 
 // MongoDB URI
@@ -37,7 +45,7 @@ async function run() {
     // login role
     app.post('/employee', async (req, res) => {
       const user = req.body;
-      console.log(user);
+      // console.log(user);
       // return;
       const query = { employeeEmail: user.employeeEmail };
       const existEmloyee = await employeeCollection.findOne(query);
@@ -79,6 +87,33 @@ async function run() {
     });
 
     // menu part
+    app.post('/add-item', async (req, res) => {
+      const newItem = req.body;
+      // console.log(newItem);
+      const result = await menuCollection.insertOne(newItem);
+      res.send(result);
+    });
+
+    app.put('/update-item', async (req, res) => {
+      const updateItem = req.body;
+      const filter = { _id: req.query.id };
+      // console.log({ ...updateItem });
+      // return
+      const updateDoc = {
+        $set: { ...updateItem },
+      };
+      const result = await menuCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    app.delete('/item-delete/:id', async (req, res) => {
+      const id = req.params.id;
+      // console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const result = await menuCollection.deleteOne(query);
+      res.send(result);
+    });
+
     app.get('/today-menu', async (req, res) => {
       const result = await menuCollection.find().toArray();
       res.send(result);
@@ -128,7 +163,7 @@ async function run() {
 
     app.delete('/my-order-delete/:id', async (req, res) => {
       const id = req.params.id;
-      console.log(id);
+      // console.log(id);
       const query = { _id: new ObjectId(id) };
       const result = await orderCollection.deleteOne(query);
       res.send(result);
