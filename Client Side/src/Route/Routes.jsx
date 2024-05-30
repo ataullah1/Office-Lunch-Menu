@@ -6,6 +6,13 @@ import Root from '../root/Root';
 import TodayMenu from '../pages/TodayMenu/TodayMenu';
 import MyOrders from '../pages/MyOrders/MyOrders';
 import Error from '../pages/Error/Error';
+import PrivetRoute from './PrivetRoute';
+import Dashboard from '../pages/Dashboard/Dashboard';
+import DashboardHome from '../pages/Dashboard/DashboardHome.jsx/DashboardHome';
+import PrivetDashboard from './PrivetDashboard';
+import AllEmployee from '../pages/AllEmployee/AllEmployee';
+import TodayOrders from '../pages/TodayOrders/TodayOrders';
+import AddItems from '../pages/AddItems/AddItems';
 
 const router = createBrowserRouter([
   {
@@ -19,21 +26,56 @@ const router = createBrowserRouter([
       },
       {
         path: '/today-menu',
-        element: <TodayMenu />,
+        element: (
+          <PrivetRoute>
+            <TodayMenu />
+          </PrivetRoute>
+        ),
       },
       {
         path: '/my-orders',
-        element: <MyOrders />,
-      },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '/register',
-        element: <Register />,
+        element: (
+          <PrivetRoute>
+            <MyOrders />
+          </PrivetRoute>
+        ),
+        children: [],
       },
     ],
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivetDashboard>
+        <Dashboard />
+      </PrivetDashboard>
+    ),
+    children: [
+      {
+        path: '/dashboard',
+        element: <DashboardHome />,
+      },
+      {
+        path: '/dashboard/all-employees',
+        element: <AllEmployee />,
+      },
+      {
+        path: '/dashboard/today-orders',
+        element: <TodayOrders />,
+      },
+      {
+        path: '/dashboard/add-items',
+        element: <AddItems />,
+      },
+    ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
 ]);
 export default router;

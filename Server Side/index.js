@@ -26,18 +26,69 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const employeeCollection = client
+      .db('office_lunchDB')
+      .collection('employee');
     const menuCollection = client.db('office_lunchDB').collection('today_menu');
     const orderCollection = client
       .db('office_lunchDB')
       .collection('employee_order');
-    const employeesCollection = client
-      .db('office_lunchDB')
-      .collection('total_employees');
 
+    // login role
+    app.post('/employee', async (req, res) => {
+      const user = req.body;
+      console.log(user);
+      // return;
+      const query = { employeeEmail: user.employeeEmail };
+      const existEmloyee = await employeeCollection.findOne(query);
+      if (existEmloyee) {
+        return res.send({ message: 'User Allready Exists', insertedId: null });
+      }
+      const result = await employeeCollection.insertOne(user);
+      res.send(result);
+    });
+    app.get('/employees', async (req, res) => {
+      const result = await employeeCollection.find().toArray();
+      res.send(result);
+    });
+    app.get('/user/admin/:email', async (req, res) => {
+      const email = req.params.email;
+      // console.log(email);
+      const query = { employeeEmail: email, power: 'admin' };
+      const result = await employeeCollection.findOne(query);
+      let admin = false;
+      if (result?.power === 'admin') {
+        admin = true;
+      }
+      // console.log(admin);
+
+      res.send({ admin });
+    });
+    app.patch('/change-power', async (req, res) => {
+      const powerEmp = req.query.power;
+      const id = req.query.id;
+      // console.log('empolye:', powerEmp, '===id:', id);
+      const query = { _id: new ObjectId(id) };
+      const update = {
+        $set: {
+          power: powerEmp,
+        },
+      };
+      const result = employeeCollection.updateOne(query, update);
+      res.send(result);
+    });
+
+    // menu part
     app.get('/today-menu', async (req, res) => {
       const result = await menuCollection.find().toArray();
       res.send(result);
     });
+    app.get('/totalItem', async (req, res) => {
+      const result = await menuCollection.find().toArray();
+      const totalItem = result.length;
+      res.send({ totalItem });
+    });
+
     app.post('/order', async (req, res) => {
       const data = req.body;
       // console.log(data);
@@ -45,10 +96,33 @@ async function run() {
       res.send(result);
     });
 
+    app.get('/orders-length', async (req, res) => {
+      const result = await orderCollection.find().toArray();
+      const totalOrder = result.length;
+      res.send({ totalOrder });
+    });
+    app.get('/orders', async (req, res) => {
+      const result = await orderCollection.find().toArray();
+      res.send(result);
+    });
     app.get('/orderDta/:id', async (req, res) => {
       const id = req.params.id;
       const query = { userEmail: id };
       const result = await orderCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    app.patch('/order-update', async (req, res) => {
+      const id = req.query.id;
+      const statusDta = req.query.status;
+      // console.log('id:', id, '  status: ', statusDta);
+      const query = { _id: new ObjectId(id) };
+      const docUpdate = {
+        $set: {
+          status: statusDta,
+        },
+      };
+      const result = orderCollection.updateOne(query, docUpdate);
       res.send(result);
     });
 
