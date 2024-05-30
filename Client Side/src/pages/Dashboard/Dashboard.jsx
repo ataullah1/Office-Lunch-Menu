@@ -66,6 +66,17 @@ const Dashboard = () => {
             </li>
             <li className="w-full mb-2">
               <NavLink
+                to={'/dashboard/today-all-items'}
+                className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2"
+              >
+                <span>
+                  <MdAddChart />
+                </span>
+                Today All Items
+              </NavLink>
+            </li>
+            <li className="w-full mb-2">
+              <NavLink
                 to={'/dashboard/all-employees'}
                 className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2"
               >

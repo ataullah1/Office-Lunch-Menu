@@ -43,11 +43,7 @@ const MenuCard = ({ menu }) => {
           <p>{menu?.food_description}</p>
         </div>
         <hr />
-        <div className="min-h-14">
-          {menu?.food_ingredients.map((dta) => (
-            <span className="">{dta}, </span>
-          ))}
-        </div>
+        <div className="min-h-14">{menu?.food_ingredients}</div>
         <hr />
         <div className="flex justify-between items-center py-3">
           <button className="py-2 px-7 rounded-md shadow-md hover:shadow-slate-200 hover:-translate-y-2 duration-300 shadow-slate-500">

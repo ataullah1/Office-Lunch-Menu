@@ -13,6 +13,7 @@ import PrivetDashboard from './PrivetDashboard';
 import AllEmployee from '../pages/AllEmployee/AllEmployee';
 import TodayOrders from '../pages/TodayOrders/TodayOrders';
 import AddItems from '../pages/AddItems/AddItems';
+import TodayAllItems from '../pages/TodayAllItems/TodayAllItems';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/add-items',
         element: <AddItems />,
+      },
+      {
+        path: '/dashboard/today-all-items',
+        element: <TodayAllItems />,
       },
     ],
   },

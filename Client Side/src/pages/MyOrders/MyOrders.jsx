@@ -162,11 +162,7 @@ const MyOrders = () => {
                       </td>
                       <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div className="text-sm leading-5 ">
-                          <p>
-                            {dta?.food_ingredients.map((data) => (
-                              <span className="">{data}, </span>
-                            ))}
-                          </p>
+                          <p>{dta?.food_ingredients}</p>
                         </div>
                       </td>
 
