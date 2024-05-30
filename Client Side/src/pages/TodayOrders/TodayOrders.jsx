@@ -29,11 +29,11 @@ const TodayOrders = () => {
   });
   console.log(todayOrders);
 
-  const { mutateAsyncUpdate } = useMutation({
-    mutationFn: async (id, statusDta) => {
-      console.log(id, statusDta);
+  const { mutateAsync: update } = useMutation({
+    mutationFn: async (statusDta) => {
+      console.log(statusDta[0], statusDta[1]);
       const { data } = await axioss.patch(
-        `/order-update?status=${statusDta}&id=${id}`
+        `/order-update?status=${statusDta[1]}&id=${statusDta[0]}`
       );
       console.log(data);
     },
@@ -46,7 +46,7 @@ const TodayOrders = () => {
   const handleStatus = async (id, statusDta) => {
     setViewBtn(null);
     console.log(id, statusDta);
-    await mutateAsyncUpdate(id, statusDta);
+    await update([id, statusDta]);
   };
 
   //  Delete Order======
