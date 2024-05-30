@@ -33,14 +33,8 @@ async function run() {
     const orderCollection = client
       .db('office_lunchDB')
       .collection('employee_order');
-    const employeesCollection = client
-      .db('office_lunchDB')
-      .collection('total_employees');
 
-    app.get('/today-menu', async (req, res) => {
-      const result = await menuCollection.find().toArray();
-      res.send(result);
-    });
+    // login role
     app.post('/employee', async (req, res) => {
       const user = req.body;
       console.log(user);
@@ -59,16 +53,40 @@ async function run() {
     });
     app.get('/user/admin/:email', async (req, res) => {
       const email = req.params.email;
-      console.log(email);
+      // console.log(email);
       const query = { employeeEmail: email, power: 'admin' };
       const result = await employeeCollection.findOne(query);
       let admin = false;
       if (result?.power === 'admin') {
         admin = true;
       }
-      console.log(admin);
+      // console.log(admin);
 
       res.send({ admin });
+    });
+    app.patch('/change-power', async (req, res) => {
+      const powerEmp = req.query.power;
+      const id = req.query.id;
+      // console.log('empolye:', powerEmp, '===id:', id);
+      const query = { _id: new ObjectId(id) };
+      const update = {
+        $set: {
+          power: powerEmp,
+        },
+      };
+      const result = employeeCollection.updateOne(query, update);
+      res.send(result);
+    });
+
+    // menu part
+    app.get('/today-menu', async (req, res) => {
+      const result = await menuCollection.find().toArray();
+      res.send(result);
+    });
+    app.get('/totalItem', async (req, res) => {
+      const result = await menuCollection.find().toArray();
+      const totalItem = result.length;
+      res.send({ totalItem });
     });
 
     app.post('/order', async (req, res) => {
@@ -78,6 +96,15 @@ async function run() {
       res.send(result);
     });
 
+    app.get('/orders-length', async (req, res) => {
+      const result = await orderCollection.find().toArray();
+      const totalOrder = result.length;
+      res.send({ totalOrder });
+    });
+    app.get('/orders', async (req, res) => {
+      const result = await orderCollection.find().toArray();
+      res.send(result);
+    });
     app.get('/orderDta/:id', async (req, res) => {
       const id = req.params.id;
       const query = { userEmail: id };
