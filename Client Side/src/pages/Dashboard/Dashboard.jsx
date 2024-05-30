@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFirstOrder, FaHome, FaUsersCog } from 'react-icons/fa';
+import { FaFirstOrder, FaHome, FaSitemap, FaUsersCog } from 'react-icons/fa';
 import { LuLogOut } from 'react-icons/lu';
 import {
   MdAddChart,
@@ -70,7 +70,7 @@ const Dashboard = () => {
                 className="w-full px-4 py-2 hover:bg-gray-700 flex items-center gap-2"
               >
                 <span>
-                  <MdAddChart />
+                  <FaSitemap />
                 </span>
                 Today All Items
               </NavLink>
@@ -123,7 +123,7 @@ const Dashboard = () => {
           </ul>
         </nav>
       </aside>
-      <main className="flex-grow h-screen overflow-y-auto bg-gray-100">
+      <main id='dashboarMain' className="flex-grow h-screen overflow-y-auto bg-gray-100">
         <Outlet />
       </main>
     </div>
