@@ -12,6 +12,7 @@ This is a web application designed to streamline the process of managing lunch o
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Example Admin Login](#example-admin-login)
 - [API Endpoints](#api-endpoints)
 
 ## Project Description
