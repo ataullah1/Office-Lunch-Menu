@@ -87,14 +87,14 @@ const DashboardHome = () => {
     });
   }
 
-  const { data: orderLength = 0 } = useQuery({
+  const { data: orderLength = '00' } = useQuery({
     queryKey: ['order_length'],
     queryFn: async () => {
       const { data } = await axioss.get('/orders-length');
       return data;
     },
   });
-  const { data: totalItem = 0 } = useQuery({
+  const { data: totalItem = '00' } = useQuery({
     queryKey: ['totalItem'],
     queryFn: async () => {
       const { data } = await axioss.get('/totalItem');
