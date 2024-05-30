@@ -279,7 +279,7 @@ const TodayAllItems = () => {
         ></div>
       )}
       <div className="p-5 abcd">
-        <h1 className="pt-3 pb-5 text-3xl text-slate-700">Today All Items</h1>
+        <h1 id='goTop' className="pt-3 pb-5 text-3xl text-slate-700">Today All Items</h1>
         <div className="flex flex-col">
           <div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
@@ -354,12 +354,14 @@ const TodayAllItems = () => {
 
                             {viewBtn === dta._id && (
                               <div className="absolute z-20 top-[65px] right-[35px] w-36 border border-stone-600 rounded-md p-1 bg-white">
-                                <button
-                                  onClick={() => handleUpdate(dta._id)}
-                                  className="py-2 w-full shadow-md shadow-slate-400 hover:shadow-slate-600 rounded-md updateItem"
-                                >
-                                  Update
-                                </button>
+                               <a href='#goTop'>
+                                    <button
+                                      onClick={() => handleUpdate(dta._id)}
+                                      className="py-2 w-full shadow-md shadow-slate-400 hover:shadow-slate-600 rounded-md updateItem"
+                                    >
+                                      Update
+                                    </button>
+                               </a>
 
                                 <button
                                   onClick={() => handleDelete(dta._id)}
