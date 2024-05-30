@@ -68,7 +68,7 @@ export default function Register() {
       // const allDta = { name, email, password, imgUrl };
       // console.log(allDta);
       const result = await emlPassRegister(email, password);
-      console.log(result.user);
+      const user = result.user;
 
       // Update Profile
       await profileUpdate(name, imgUrl);
@@ -77,19 +77,19 @@ export default function Register() {
         text: 'Your account has been successfully created. Please Login Now.',
         icon: 'success',
       });
-      if (result.user) {
-        const employeeName = result.user.displayName;
-        const employeeEmail = result.user.email;
-        const employeePhoto = user.photoURL;
-        const power = 'employee';
-        const employeeDta = {
-          employeeName,
-          employeeEmail,
-          employeePhoto,
-          power,
-        };
-        await mutateAsync({ employeeDta });
-      }
+
+      const employeeName = user.displayName;
+      const employeeEmail = user.email;
+      const employeePhoto = user.photoURL;
+      const power = 'employee';
+      const employeeDta = {
+        employeeName,
+        employeeEmail,
+        employeePhoto,
+        power,
+      };
+      await mutateAsync({ employeeDta });
+
       reset();
       // naviget('/login');
       naviget(location?.state ? location.state : '/');

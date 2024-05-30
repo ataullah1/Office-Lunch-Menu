@@ -50,7 +50,18 @@ export default function Login() {
       setLoading(true);
 
       const result = await emlPassLogin(email, password);
-      console.log(result.user);
+      const user = result.user;
+      const employeeName = user.displayName;
+      const employeeEmail = user.email;
+      const employeePhoto = user.photoURL;
+      const power = 'employee';
+      const employeeDta = {
+        employeeName,
+        employeeEmail,
+        employeePhoto,
+        power,
+      };
+      await mutateAsync({ employeeDta });
 
       Swal.fire({
         title: 'Good job!',
