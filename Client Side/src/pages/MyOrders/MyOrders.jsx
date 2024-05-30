@@ -5,6 +5,7 @@ import Error from '../Error/Error';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { ImSpinner3 } from 'react-icons/im';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const noDataImg =
   'https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150570252.jpg?t=st=1716966151~exp=1716969751~hmac=292d7ef949cf63cbd60258b2fcf3a739db3599cd65048c87ed072ebe9195d48d&w=900';
@@ -97,90 +98,105 @@ const MyOrders = () => {
       {/* table part */}
       <div className="w-11/12 mx-auto">
         {/* Table Part */}
-        <div className="w-11/12 mx-auto pt-10">
-          <div className="overflow-x-auto">
-            <table className="w-full shadow-md border mx-auto border-gray-100 my-6 text-slate-700 dark:text-slate-100">
+        <div className="w-full mx-auto pt-10">
+          <div className="overflow-x-auto rounded-md">
+            <table className="min-w-full border rounded-md">
               <thead>
-                <tr className="bg-[#0095FF] text-white">
-                  <th className="py-6 px-1 text-lg text-center border-b">
-                    Image
+                <tr className="rounded-md font-semibold">
+                  <th className="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-lefttext-slate-800 uppercase border-b border-gray-200 bg-gray-50 text-slate-800">
+                    <span className="flex items-center gap-16">
+                      <span>Image</span>
+                      <span>Name</span>
+                    </span>
                   </th>
-                  <th className="py-6 px-1 text-lg text-left border-b">
-                    Item Name
+                  <th className="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-slate-800 uppercase border-b border-gray-200 bg-gray-50">
+                    Description
                   </th>
-                  <th className="py-6 px-1 text-lg text-left border-b">
-                    Short description
-                  </th>
-                  <th className="py-6 px-1 text-lg text-left border-b">
+
+                  <th className="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-slate-800 uppercase border-b border-gray-200 bg-gray-50">
                     Ingredients
                   </th>
-                  <th className="py-6 px-1 text-lg border-b text-center">
+                  <th className="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-slate-800 uppercase border-b border-gray-200 bg-gray-50">
+                    Status
+                  </th>
+
+                  <th className="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left  uppercase border-b border-gray-200 bg-gray-50 text-slate-800">
                     Action
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                {isLoading ? (
-                  <div className="m-14 text-center w-[60px] h-[60px] flex items-center justify-center text-8xl text-white">
-                    <ImSpinner3 className="animate-spin" />
-                  </div>
-                ) : my_order.length < 1 ? (
-                  <div className="h-[450px] flex items-center justify-center text-center mx-auto w-full px-5">
-                    <img
-                      className="max-h-full mx-auto rounded-md"
-                      src={noDataImg}
-                      alt=""
-                    />
-                  </div>
-                ) : (
-                  my_order?.map((dta) => (
-                    <tr
-                      key={dta._id}
-                      className="hover:bg-gray-200 dark:hover:bg-gray-900 border-b transition duration-300"
-                    >
-                      <td className="flex justify-start">
-                        <div
-                          className="h-24 w-32"
-                          style={{
-                            backgroundImage: `url(${dta.food_image})`,
-                            backgroundPosition: 'center',
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                          }}
-                        ></div>
+
+              {isLoading ? (
+                <div className="text-slate-800 m-14 text-center w-[60px] h-[60px] flex items-center justify-center text-8xl ">
+                  <ImSpinner3 className="animate-spin" />
+                </div>
+              ) : (
+                <tbody className="text-white">
+                  {my_order.map((dta) => (
+                    <tr>
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0 w-24 h-20">
+                            <img
+                              className="w-24 h-20 rounded-md"
+                              src={dta?.food_image}
+                              alt=""
+                            />
+                          </div>
+
+                          <div className="ml-4 w-44">
+                            <div className="text-sm font-medium leading-5 ">
+                              {dta?.food_name}
+                            </div>
+                          </div>
+                        </div>
                       </td>
-                      <td className="px-3 border-b border-r text-xl font-medium min-w-48">
-                        <p>
-                          {dta.food_name.slice(0, 18)}
-                          {dta.food_name.length > 18 && '...'}
-                        </p>
+
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div className="text-sm leading-5 ">
+                          <p>
+                            {dta.food_description.slice(0, 32)}
+                            {dta.food_description.length > 32 && '...'}
+                          </p>
+                        </div>
                       </td>
-                      <td className=" px-1 border-b border-r text-xl font-medium min-w-56">
-                        <p>
-                          {dta.food_description.slice(0, 32)}
-                          {dta.food_description.length > 32 && '...'}
-                        </p>
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div className="text-sm leading-5 ">
+                          <p>
+                            {dta?.food_ingredients.map((data) => (
+                              <span className="">{data}, </span>
+                            ))}
+                          </p>
+                        </div>
                       </td>
-                      <td className=" px-3 border-b border-r text-base font-medium min-w-80">
-                        <p>
-                          {dta?.food_ingredients.map((data) => (
-                            <span className="">{data}, </span>
-                          ))}
-                          {/* {dta.recReson.slice(0, 95)}
-                          {dta.recReson.length > 95 && '...'} */}
-                        </p>
+
+                      <td className="px-4 py-4 text-sm leading-5  whitespace-no-wrap border-b border-gray-200">
+                        <div className="flex items-center justify-center gap-2">
+                          <div
+                            className={
+                              dta.status === 'panding'
+                                ? 'h-3 w-3 rounded-full bg-[#F97316]'
+                                : dta.status === 'processing'
+                                ? 'h-3 w-3 rounded-full bg-yellow-400'
+                                : 'h-3 w-3 rounded-full bg-[#10B981]'
+                            }
+                          ></div>
+                          {dta?.status}
+                        </div>
                       </td>
-                      <td className=" px-5 border-b text-end">
-                        <span onClick={() => handleDelete(dta._id)}>
-                          <button className="bg-red-500 hover:scale-110 scale-100 transition-all duration-100 text-white py-2 px-8 rounded-md">
-                            Delete
-                          </button>
-                        </span>
+
+                      <td className="text-center border-b border-gray-200">
+                        <button
+                          onClick={() => handleDelete(dta._id)}
+                          className="text-2xl text-red-500 hover:scale-125 duration-300"
+                        >
+                          <FaTrashAlt />
+                        </button>
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
+                  ))}
+                </tbody>
+              )}
             </table>
           </div>
         </div>

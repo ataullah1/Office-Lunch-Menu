@@ -172,14 +172,14 @@ const AllEmployee = () => {
                             {dta.power === 'admin' ? (
                               <button
                                 onClick={() => handleRemoveAdmin(dta._id)}
-                                className="py-2 w-28 border bg-white rounded-md "
+                                className="py-2  w-36 bg-white shadow-md shadow-slate-400 hover:shadow-slate-600 rounded-md"
                               >
                                 Remove Admin
                               </button>
                             ) : (
                               <button
                                 onClick={() => handleAddAdmin(dta._id)}
-                                className="py-2 w-24 border bg-white rounded-md "
+                                className="py-2 w-28 bg-white shadow-md shadow-slate-400 hover:shadow-slate-600 rounded-md"
                               >
                                 Add Admin
                               </button>

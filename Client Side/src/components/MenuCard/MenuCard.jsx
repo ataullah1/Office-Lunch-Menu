@@ -21,6 +21,7 @@ const MenuCard = ({ menu }) => {
     const orderDta = menu;
     orderDta.orderId = menu._id;
     delete orderDta._id;
+    orderDta.status = 'panding';
     orderDta.userName = userDta.displayName;
     orderDta.userEmail = userDta.email;
     orderDta.userPhoto = userDta.photoURL;
