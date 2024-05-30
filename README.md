@@ -46,51 +46,7 @@ The Office Lunch Management System allows office employees to order their lunch 
 
 ## Project Structure
 
-Office-Lunch-Menu-Management/
-│
-├── Server Side/
-│ ├── .env
-│ ├── index.js
-│ ├── .gitignore
-│ └── package.json
-│
-├── Client Side/
-│ ├── public/
-│ ├── src/
-│ │ ├── Route/
-│ │ │ ├── Route.jsx
-│ │ │ ├── PrivetDashboard.jsx
-│ │ │ └── PrivetRoute.jsx
-│ │ ├── components/
-│ │ │ ├── Banner
-│ │ │ ├── Footer
-│ │ │ ├── Header
-│ │ │ ├── ProfileMenu
-│ │ │ ├── MultyImageBanner
-│ │ │ └── Nav
-│ │ ├── Page/
-│ │ │ ├── Home
-│ │ │ ├── Dashboard
-│ │ │ ├── AllEmployee
-│ │ │ ├── AddItems
-│ │ │ ├── TodayAllItems
-│ │ │ ├── Error
-│ │ │ ├── TodayOrders
-│ │ │ ├── MyOrders
-│ │ │ ├── TodayMenu
-│ │ │ ├── LoginPage.jsx
-│ │ │ └── RegisterPage.jsx
-│ │ ├── Hooks/
-│ │ │ ├── useAuth.jsx
-│ │ │ ├── useAxios.jsx
-│ │ │ ├── useAxiosSec.jsx
-│ │ └── root.jsx
-│ ├── .env
-│ ├── package.json
-│ ├── .gitignore
-│ └── tailwind.config.js
-│
-└── README.md
+![Project Structure](./Project%20Structure.png)
 
 ## Installation
 
